@@ -1,0 +1,8 @@
+.box {
+  /* background: #000; */
+  width: 2rem;
+  height: 2rem;
+}
+.box span {
+  color: #000;
+}
