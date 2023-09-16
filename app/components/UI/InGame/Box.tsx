@@ -15,8 +15,9 @@ export enum EBoxType {
 
 type TBoxProps = React.PropsWithChildren & {
   id?: string
-  onAdd?: (id: string, type: EBoxType) => void
   type: EBoxType
+  onAdd?: (type: EBoxType) => void
+  disabled?: boolean
 }
 
 const Box = (props: TBoxProps) => {
@@ -44,17 +45,14 @@ const Box = (props: TBoxProps) => {
   }
 
   return (
-    <div
+    <button
       className={classes.box}
       style={{ backgroundColor }}
-      onClick={
-        props.onAdd
-          ? props.onAdd.bind(null, props.id as string, props.type)
-          : undefined
-      }
+      onClick={props.onAdd ? props.onAdd.bind(null, props.type) : undefined}
+      disabled={props.disabled ? props.disabled : undefined}
     >
       <span>{props.type.toString()}</span>
-    </div>
+    </button>
   )
 }
 
