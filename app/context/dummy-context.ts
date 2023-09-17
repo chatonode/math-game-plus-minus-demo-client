@@ -34,6 +34,34 @@ const DUMMY_QUESTIONS: TQuestionData[] = [
 
         }
     },
+    {
+        id: Math.random().toString(),
+        title: 'Depodaki Kutulara El At!',
+        first_part: 'Deponda 6372 adet kutun var. Bugün 723 kutu daha sipariş geldi. Bu kutuları depona eksiksizce yerleştirir misin?',
+        second_part: 'Tebrikler! Kutuları depoya başarıyla yerleştirdin. Şimdi deponda kaç kutu olduğunu yazarak stok müdürüne gönderir misin?',
+        success_message: 'Tekrar Tebrikler! Depodaki kutular emin ellerde!',
+        params: {
+            operation: EOperationType.ADDITION,
+            first_number: 6372,
+            number_to_operate: 723,
+            expected_result: 6372 + 723
+
+        }
+    },
+    {
+        id: Math.random().toString(),
+        title: 'Depodaki Kutulara El At!',
+        first_part: 'Deponda 2547 adet kutun var. Bugün 6543 kutu daha sipariş geldi. Bu kutuları depona eksiksizce yerleştirir misin?',
+        second_part: 'Tebrikler! Kutuları depoya başarıyla yerleştirdin. Şimdi deponda kaç kutu olduğunu yazarak stok müdürüne gönderir misin?',
+        success_message: 'Tekrar Tebrikler! Depodaki kutular emin ellerde!',
+        params: {
+            operation: EOperationType.ADDITION,
+            first_number: 2547,
+            number_to_operate: 6543,
+            expected_result: 2547 + 6543
+
+        }
+    },
 ]
 
 export default DUMMY_QUESTIONS
