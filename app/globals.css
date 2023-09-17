@@ -113,6 +113,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: auto;
 }
 
 
@@ -128,10 +129,11 @@ html {
 
 .container {
   display: flex;
-  margin-top: 10vh;
+  /* margin-top: 10vh;
   margin-bottom: 10vh;
   margin-left: 5vw;
-  margin-right: 5vw;
-  width: 90vw;
-  height: 80vh;
+  margin-right: 5vw; */
+  margin: 5%;
+  width: 90%;
+  height: 80%;
 }

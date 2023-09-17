@@ -4,7 +4,7 @@ import Addition from '@/app/components/Addition/Addition'
 
 import DUMMY_QUESTIONS, { EOperationType } from '@/app/context/dummy-context'
 
-const DUMMY_SINGLE_QUESTION = DUMMY_QUESTIONS[0]
+const DUMMY_SINGLE_QUESTION = DUMMY_QUESTIONS[3]
 
 const Home = () => {
   const operation = DUMMY_SINGLE_QUESTION.params.operation
