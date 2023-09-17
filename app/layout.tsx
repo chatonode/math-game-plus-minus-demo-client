@@ -16,10 +16,10 @@ export default function RootLayout(props: React.PropsWithChildren) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <section>
+        {/* <section> */}
           {/* Include shared UI here e.g. a header or sidebar */}
           {/* <MainNavigation /> */}
-        </section>
+        {/* </section> */}
         {props.children}
       </body>
     </html>

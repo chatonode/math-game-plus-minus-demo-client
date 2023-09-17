@@ -106,6 +106,26 @@ a {
   }
 } */
 
+html {
+  aspect-ratio: 4/3;
+  max-width: 800px;
+  max-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* body {
+  aspect-ratio: 4/3;
+  max-width: 800px;
+  max-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+
 .container {
   display: flex;
   margin-top: 10vh;
