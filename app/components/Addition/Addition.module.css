@@ -8,6 +8,7 @@
 .leftbar {
   background-color: blue;
   align-items: center;
+  justify-content: center;
 }
 
 .locked {
