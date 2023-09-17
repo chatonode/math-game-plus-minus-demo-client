@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         {/* <section> */}
           {/* Include shared UI here e.g. a header or sidebar */}
           {/* <MainNavigation /> */}
