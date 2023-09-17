@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import classes from './Box.module.css'
 
@@ -11,16 +11,17 @@ export enum EBoxType {
   INFINITE = 'infinite',
 }
 
-// enum
-
 type TBoxProps = React.PropsWithChildren & {
-  id?: string
   type: EBoxType
   onAdd?: (type: EBoxType) => void
+  id?: string
   disabled?: boolean
+  clicksLeft?: number
 }
 
 const Box = (props: TBoxProps) => {
+  const [clicksLeft, setClicksLeft] = useState<number>(props.clicksLeft || 0)
+
   let backgroundColor: string
 
   switch (props.type) {
@@ -44,12 +45,31 @@ const Box = (props: TBoxProps) => {
       break
   }
 
+  console.log('IDBOX', props.id)
+
+  const boxClickHandler = () => {
+    if (props.onAdd) {
+      setClicksLeft((prevClickState) => {
+        if (prevClickState === 0) {
+          // early
+          return prevClickState
+        }
+        return prevClickState--
+      })
+
+      props.onAdd(props.type)
+    }
+
+    console.log('WTF', clicksLeft)
+  }
+
   return (
     <button
       className={classes.box}
       style={{ backgroundColor }}
-      onClick={props.onAdd ? props.onAdd.bind(null, props.type) : undefined}
-      disabled={props.disabled ? props.disabled : undefined}
+      onClick={boxClickHandler}
+      disabled={clicksLeft === 0 ? true : undefined} // TODO: check & log conditions
+      id={props.id}
     >
       <span>{props.type.toString()}</span>
     </button>

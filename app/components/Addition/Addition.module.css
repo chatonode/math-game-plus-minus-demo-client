@@ -1,0 +1,15 @@
+.bar {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.leftbar {
+  background-color: blue;
+  align-items: center;
+}
+
+.rightbar {
+  background-color: red;
+}

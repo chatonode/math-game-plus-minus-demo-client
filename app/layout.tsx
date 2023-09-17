@@ -2,7 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
-import MainNavigation from './components/MainNavigation'
+// import MainNavigation from './components/MainNavigation'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,7 +18,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
       <body className={inter.className}>
         <section>
           {/* Include shared UI here e.g. a header or sidebar */}
-          <MainNavigation />
+          {/* <MainNavigation /> */}
         </section>
         {props.children}
       </body>

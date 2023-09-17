@@ -29,3 +29,23 @@ export const convertFromNumToActiveBoxDigits = (numberValue: number) => {
 
     return numberValues
 }
+
+// TODOOOO
+export const getClicksLeft = (currentTotal: number, boxDigit: number) => {
+    const currentTotals = Array.from(currentTotal.toString()).reverse()
+
+
+    const clicksLeft = currentTotals.find((e, i) => {
+        console.log('i', i, '   ', 'boxDigit', boxDigit)
+        // if (i !== boxDigit) {
+        //     return // early
+        // }
+
+        return i !== boxDigit
+    })
+
+    console.log('clicksLeftHelper', clicksLeft)
+
+
+    return parseInt(clicksLeft as string)
+}

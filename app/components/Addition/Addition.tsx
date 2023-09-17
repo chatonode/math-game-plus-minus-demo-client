@@ -2,13 +2,16 @@
 
 import { useReducer, useCallback, useEffect } from 'react'
 
+import AdditionBoxes from './AdditionBoxes'
 import Box from '../UI/InGame/Box'
-import Boxes from '../UI/InGame/Boxes'
+
+import classes from './Addition.module.css'
 
 import {
   convertFromNumToBoxDigits,
   convertFromBoxDigitsToNum,
   convertFromNumToActiveBoxDigits,
+  getClicksLeft,
 } from '@/app/_helpers/BoxHelper'
 
 import { TQuestionData, EOperationType } from '@/app/context/dummy-context'
@@ -84,7 +87,7 @@ const additionReducer = (
           finished: true,
         },
       }
-      // TODO: Failure Case
+    // TODO: Failure Case
     // case EAdditionActionType.FAILURE:
     //   return {
     //     ...prevAdditionState,
@@ -144,57 +147,70 @@ const Addition = (props: TAdditionProps) => {
       })
     }
 
-    if (actual >= expected) {
+    if (actual > expected) {
       dispatch({
         type: EAdditionActionType.FAILURE,
       })
     }
   }, [state.first_part.current_total])
 
-  const activeBoxes = convertFromNumToActiveBoxDigits(
+  state.first_part.current_box_status
+
+  // TODOOOO
+  const ActiveBoxList = convertFromNumToActiveBoxDigits(
     props.question.params.number_to_operate
   ).map((numberValue, boxDigit) => {
-    // console.log(numberValue, boxDigit)
-    console.log(state.first_part.current_total)
-    console.log(props.question.params.expected_result)
+    const boxValue = Math.pow(10, boxDigit)
+    const boxType = boxValue.toString() as EBoxType
+    const boxClicksLeft = getClicksLeft(state.first_part.current_total, boxDigit)
+
+    // Edge Case: One Less Column
+    if (boxValue > props.question.params.number_to_operate) {
+      return // Early
+    }
 
     return (
       <Box
-        key={numberValue * boxDigit}
-        id={(numberValue * boxDigit).toString()}
-        type={Math.pow(10, boxDigit).toString() as EBoxType}
+        key={numberValue * boxValue}
+        id={(numberValue * boxValue).toString()}
+        type={boxType}
         onAdd={addBoxHandler}
-        disabled={state.first_part.finished}
+        disabled={state.first_part.finished === true ? true : undefined}
+        clicksLeft={boxClicksLeft}
       />
     )
   })
 
   return (
     <>
-      <main>
-        <div>
-          <h3>İşlem</h3>
-          <label>{props.question.params.first_number}</label>
-          <label>+</label>
-          <label>{props.question.params.number_to_operate}</label>
-          <label>=</label>
-          <input onChange={totalChangeHandler} />
+      <main className="container">
+        <div className={`${classes.bar} ${classes.leftbar}`}>
+          <h2>Mevcut Durum</h2>
+          <AdditionBoxes boxColumns={state.first_part.current_box_status} />
         </div>
-        <div>
-          <h3>Yeni Gelenler</h3>
-          {/* TODO: Generate Active Boxes */}
-          <div>{activeBoxes}</div>
+
+        <div className={`${classes.bar} ${classes.rightbar}`}>
           <div>
-            <button onClick={resetQuestionHandler}>Başa Dön</button>
+            <h3>Yeni Gelenler</h3>
+            <div>{ActiveBoxList}</div>
+            <div>
+              <button onClick={resetQuestionHandler}>Başa Dön</button>
+            </div>
           </div>
-        </div>
-        <div>
-          <h3>Mevcut Durum</h3>
-          <Boxes numberOfBoxesList={state.first_part.current_box_status} />
-        </div>
-        <div>
-          {!state.first_part.finished && <p>{props.question.first_part}</p>}
-          {state.first_part.finished && <p>{props.question.second_part}</p>}
+
+          <div>
+            {!state.first_part.finished && <p>{props.question.first_part}</p>}
+            {state.first_part.finished && <p>{props.question.second_part}</p>}
+          </div>
+
+          <div>
+            <h3>İşlem</h3>
+            <label>{props.question.params.first_number}</label>
+            <label>+</label>
+            <label>{props.question.params.number_to_operate}</label>
+            <label>=</label>
+            <input onChange={totalChangeHandler} />
+          </div>
         </div>
       </main>
     </>

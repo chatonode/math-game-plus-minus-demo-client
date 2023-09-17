@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Box, { EBoxType } from './Box'
+import classes from './BoxColumn.module.css'
 
 // const generateBoxType = (boxDigit: string): EBoxType => {
 //   switch (boxDigit) {
@@ -61,39 +62,34 @@ import Box, { EBoxType } from './Box'
 //   return arrayWithBoxObjects
 // }
 
-type TBoxesProps = React.PropsWithChildren & {
-  numberOfBoxesList: number[][]
+type TBoxColumnProps = React.PropsWithChildren & {
+  boxList: number[]
+  boxType: EBoxType
 }
 
-const Boxes = (props: TBoxesProps) => {
+const BoxColumn = (props: TBoxColumnProps) => {
   return (
-    <div>
-      {props.numberOfBoxesList.map((columnArray, numberOfDigits) => {
-        const boxComponents = columnArray.map((numberOfBoxesInColumn) => {
-          // Calculate Box value
-          const valueOfBox = Math.pow(10, numberOfDigits)
-          const typeOfBox = valueOfBox.toString() as EBoxType // Logical Type Transformation
+    <div className={classes['column-container']}>
+      {props.boxList.map((numberOfBoxesInColumn) => {
+        // Calculate Box value
+        const valueOfBox = parseInt(props.boxType) // 1, 10, 100, ...
 
-          // Loop N Times
-          // @ref-link: https://bobbyhadz.com/blog/react-create-number-of-elements
-          const newArrayForColumn = Array.from(
-            { length: numberOfBoxesInColumn },
-            (_, index) => {
-              // Generate unique key
-              const numberValue = index + 1
-              const boxKey = numberValue * valueOfBox
+        // Loop N Times
+        // @ref-link: https://bobbyhadz.com/blog/react-create-number-of-elements
+        const BoxList = Array.from(
+          { length: numberOfBoxesInColumn },
+          (_, index) => {
+            // Generate unique key
+            const numberValue = index + 1
+            const boxKey = numberValue * valueOfBox
 
-              return <Box key={boxKey} type={typeOfBox} />
-            }
-          )
-
-          return newArrayForColumn
-        })
-
-        return boxComponents
+            return <Box key={boxKey} type={props.boxType} />
+          }
+        )
+        return BoxList
       })}
     </div>
   )
 }
 
-export default Boxes
+export default BoxColumn

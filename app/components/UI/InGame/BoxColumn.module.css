@@ -1,0 +1,15 @@
+/* .warehouse-container {
+  height: 70%;
+  width: 80%;
+}
+
+.column-container {
+  display: flex;
+  justify-content: space-around;
+} */
+
+.column-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
