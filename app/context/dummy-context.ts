@@ -15,6 +15,7 @@ export type TQuestionData = {
     title: string
     first_part: string
     second_part: string
+    success_message: string
     params: TQuestionParams
 }
 
@@ -24,6 +25,7 @@ const DUMMY_QUESTIONS: TQuestionData[] = [
         title: 'Depodaki Kutulara El At!',
         first_part: 'Deponda 7819 adet kutun var. Bugün 219 kutu daha sipariş geldi. Bu kutuları depona eksiksizce yerleştirir misin?',
         second_part: 'Tebrikler! Kutuları depoya başarıyla yerleştirdin. Şimdi deponda kaç kutu olduğunu yazarak stok müdürüne gönderir misin?',
+        success_message: 'Tekrar Tebrikler! Depodaki kutular emin ellerde!',
         params: {
             operation: EOperationType.ADDITION,
             first_number: 7819,

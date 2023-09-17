@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 
 import classes from './Box.module.css'
 
@@ -16,11 +16,12 @@ type TBoxProps = React.PropsWithChildren & {
   onAdd?: (type: EBoxType) => void
   id?: string
   disabled?: boolean
-  clicksLeft?: number
+  clicksLeft?: string
 }
 
 const Box = (props: TBoxProps) => {
-  const [clicksLeft, setClicksLeft] = useState<number>(props.clicksLeft || 0)
+  // const [clicksLeft, setClicksLeft] = useState<number>(props.clicksLeft || 0)
+  const clicksLeft = props.clicksLeft ? parseInt(props.clicksLeft) : 0
 
   let backgroundColor: string
 
@@ -49,18 +50,18 @@ const Box = (props: TBoxProps) => {
 
   const boxClickHandler = () => {
     if (props.onAdd) {
-      setClicksLeft((prevClickState) => {
-        if (prevClickState === 0) {
-          // early
-          return prevClickState
-        }
-        return prevClickState--
-      })
+      // setClicksLeft((prevClickState) => {
+      //   if (prevClickState === 0) {
+      //     // early
+      //     return prevClickState
+      //   }
+      //   return prevClickState--
+      // })
 
       props.onAdd(props.type)
     }
 
-    console.log('WTF', clicksLeft)
+    console.log('WTF', props.clicksLeft)
   }
 
   return (
@@ -76,4 +77,4 @@ const Box = (props: TBoxProps) => {
   )
 }
 
-export default Box
+export default memo(Box)

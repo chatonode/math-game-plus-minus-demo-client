@@ -8,9 +8,9 @@ import Box from '../UI/InGame/Box'
 import classes from './Addition.module.css'
 
 import {
-  convertFromNumToBoxDigits,
-  convertFromBoxDigitsToNum,
-  convertFromNumToActiveBoxDigits,
+  convertFromNumTo2DBoxDigits,
+  convertFromNumTo1DBoxDigits,
+  convertFrom1DBoxDigitsToNum,
   getClicksLeft,
 } from '@/app/_helpers/BoxHelper'
 
@@ -24,6 +24,10 @@ type TAdditionState = {
     current_total: number
     finished: boolean
   }
+  second_part: {
+    current_total: number
+    finished: boolean
+  }
 }
 
 enum EAdditionActionType {
@@ -31,6 +35,8 @@ enum EAdditionActionType {
   SUCCESS = 'success',
   FAILURE = 'failure',
   RESET = 'reset',
+  CHANGE_INPUT = 'change-input',
+  COMPLETE = 'complete',
 }
 
 type TAdditionUpdateActionPayload = {
@@ -41,11 +47,20 @@ type TAdditionResetActionPayload = {
   initial_box_status: number[][]
 }
 
+type TAdditionChangeInputActionPayload = {
+  entered_input: number
+}
+
 type TAdditionAction =
   | { type: EAdditionActionType.UPDATE; payload: TAdditionUpdateActionPayload }
   | { type: EAdditionActionType.SUCCESS }
   | { type: EAdditionActionType.FAILURE }
   | { type: EAdditionActionType.RESET; payload: TAdditionResetActionPayload }
+  | {
+      type: EAdditionActionType.CHANGE_INPUT
+      payload: TAdditionChangeInputActionPayload
+    }
+  | { type: EAdditionActionType.COMPLETE }
 
 const additionReducer = (
   prevAdditionState: TAdditionState,
@@ -64,7 +79,7 @@ const additionReducer = (
         ...prevAdditionState,
         first_part: {
           ...prevAdditionState.first_part,
-          current_box_status: convertFromNumToBoxDigits(currentTotalValue),
+          current_box_status: convertFromNumTo2DBoxDigits(currentTotalValue),
           current_total: currentTotalValue,
         },
       }
@@ -74,9 +89,10 @@ const additionReducer = (
         first_part: {
           ...prevAdditionState.first_part,
           current_box_status: action.payload.initial_box_status,
-          current_total: convertFromBoxDigitsToNum(
+          current_total: convertFrom1DBoxDigitsToNum(
             action.payload.initial_box_status
           ),
+          finished: false,
         },
       }
     case EAdditionActionType.SUCCESS:
@@ -84,6 +100,26 @@ const additionReducer = (
         ...prevAdditionState,
         first_part: {
           ...prevAdditionState.first_part,
+          finished: true,
+        },
+      }
+
+    case EAdditionActionType.CHANGE_INPUT:
+      return {
+        ...prevAdditionState,
+        ...prevAdditionState.first_part,
+        second_part: {
+          current_total: action.payload.entered_input,
+          finished: false,
+        },
+      }
+
+    case EAdditionActionType.COMPLETE:
+      return {
+        ...prevAdditionState,
+        ...prevAdditionState.first_part,
+        second_part: {
+          ...prevAdditionState.second_part,
           finished: true,
         },
       }
@@ -108,7 +144,7 @@ type TAdditionProps = React.PropsWithChildren & {
 }
 
 const Addition = (props: TAdditionProps) => {
-  const initialBoxStatus = convertFromNumToBoxDigits(
+  const initialBoxStatus = convertFromNumTo2DBoxDigits(
     props.question.params.first_number
   )
 
@@ -118,9 +154,11 @@ const Addition = (props: TAdditionProps) => {
       current_total: props.question.params.first_number,
       finished: false,
     },
+    second_part: {
+      current_total: 0,
+      finished: false,
+    },
   })
-
-  const totalChangeHandler = (event: React.ChangeEvent) => {}
 
   const resetQuestionHandler = useCallback(() => {
     dispatch({
@@ -136,6 +174,27 @@ const Addition = (props: TAdditionProps) => {
         selected_box_type: type,
       },
     })
+  }
+
+  const totalChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const totalInputValue = parseInt(event.target.value.trim())
+
+    dispatch({
+      type: EAdditionActionType.CHANGE_INPUT,
+      payload: {
+        entered_input: totalInputValue,
+      },
+    })
+  }
+
+  const totalInputSubmitHandler = () => {
+    if (
+      state.second_part.current_total === props.question.params.expected_result
+    ) {
+      dispatch({
+        type: EAdditionActionType.COMPLETE,
+      })
+    }
   }
 
   useEffect(() => {
@@ -154,15 +213,20 @@ const Addition = (props: TAdditionProps) => {
     }
   }, [state.first_part.current_total])
 
-  state.first_part.current_box_status
+  console.log('SELAM component', props.question.params.expected_result)
 
   // TODOOOO
-  const ActiveBoxList = convertFromNumToActiveBoxDigits(
+  const ActiveBoxList = convertFromNumTo1DBoxDigits(
+    // For 100 >> 219 - (7919 - 7819) = 119
+    props.question.params.expected_result - state.first_part.current_total,
     props.question.params.number_to_operate
-  ).map((numberValue, boxDigit) => {
+  ).map((numberValueAsString, boxDigit) => {
+    const numberValue = parseInt(numberValueAsString)
     const boxValue = Math.pow(10, boxDigit)
     const boxType = boxValue.toString() as EBoxType
-    const boxClicksLeft = getClicksLeft(state.first_part.current_total, boxDigit)
+
+    console.log('numberValueAsString:', numberValueAsString)
+    console.log('boxTypeAsString', boxType)
 
     // Edge Case: One Less Column
     if (boxValue > props.question.params.number_to_operate) {
@@ -171,12 +235,12 @@ const Addition = (props: TAdditionProps) => {
 
     return (
       <Box
-        key={numberValue * boxValue}
-        id={(numberValue * boxValue).toString()}
+        key={`${numberValueAsString}-${boxType}`}
+        id={`${numberValueAsString}-${boxType}`}
         type={boxType}
         onAdd={addBoxHandler}
         disabled={state.first_part.finished === true ? true : undefined}
-        clicksLeft={boxClicksLeft}
+        clicksLeft={numberValueAsString}
       />
     )
   })
@@ -184,12 +248,20 @@ const Addition = (props: TAdditionProps) => {
   return (
     <>
       <main className="container">
-        <div className={`${classes.bar} ${classes.leftbar}`}>
+        <div
+          className={`${classes.bar} ${classes.leftbar}${
+            state.first_part.finished ? ' ' + classes.locked : ''
+          }`}
+        >
           <h2>Mevcut Durum</h2>
           <AdditionBoxes boxColumns={state.first_part.current_box_status} />
         </div>
 
-        <div className={`${classes.bar} ${classes.rightbar}`}>
+        <div
+          className={`${classes.bar} ${classes.rightbar}${
+            state.second_part.finished ? ' ' + classes.locked : ''
+          }`}
+        >
           <div>
             <h3>Yeni Gelenler</h3>
             <div>{ActiveBoxList}</div>
@@ -199,8 +271,15 @@ const Addition = (props: TAdditionProps) => {
           </div>
 
           <div>
-            {!state.first_part.finished && <p>{props.question.first_part}</p>}
-            {state.first_part.finished && <p>{props.question.second_part}</p>}
+            {!state.second_part.finished && !state.first_part.finished && (
+              <p>{props.question.first_part}</p>
+            )}
+            {!state.second_part.finished && state.first_part.finished && (
+              <p>{props.question.second_part}</p>
+            )}
+            {state.second_part.finished && (
+              <p>{props.question.success_message}</p>
+            )}
           </div>
 
           <div>
@@ -209,7 +288,21 @@ const Addition = (props: TAdditionProps) => {
             <label>+</label>
             <label>{props.question.params.number_to_operate}</label>
             <label>=</label>
-            <input onChange={totalChangeHandler} />
+            <input
+              type="number"
+              value={
+                state.second_part.current_total === 0
+                  ? ''
+                  : state.second_part.current_total
+              }
+              onChange={totalChangeHandler}
+            />
+            <button
+              onClick={totalInputSubmitHandler}
+              disabled={state.first_part.finished ? undefined : true}
+            >
+              Gönder
+            </button>
           </div>
         </div>
       </main>

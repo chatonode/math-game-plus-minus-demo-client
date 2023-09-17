@@ -10,6 +10,10 @@
   align-items: center;
 }
 
+.locked {
+  filter: blur(3px);
+}
+
 .rightbar {
   background-color: red;
 }
