@@ -7,6 +7,7 @@ import { ELevel } from './Level'
 import Level000 from './levels/Level000'
 import Level001 from './levels/Level001'
 import Level003 from './levels/Level003'
+import Level005 from './levels/Level005'
 
 import { TQuestionData, EOperationType } from '@/app/context/dummy-context'
 
@@ -58,9 +59,9 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
       {operation === EOperationType.ADDITION && (
         <Addition
           question={props.question}
-          onFirstPartReset={onPrevious}
+          // onFirstPartReset={onPrevious}
           onFirstPartFinish={onNext}
-          onSecondPartReset={onPrevious}
+          // onSecondPartReset={onPrevious}
           onSecondPartFinish={onNext}
         />
       )}
@@ -81,6 +82,13 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
           myLevel={ELevel.LEVEL_003}
           onPrevious={onPrevious}
           onNext={onNext}
+        />
+      )}
+      {/* Level004 - In Game */}
+      {currentLevel === ELevel.LEVEL_005 && (
+        <Level005
+          myLevel={ELevel.LEVEL_005}
+          onPrevious={onPrevious}
         />
       )}
     </>

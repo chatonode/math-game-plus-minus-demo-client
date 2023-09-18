@@ -139,9 +139,9 @@ const additionReducer = (
 
 type TAdditionProps = React.PropsWithChildren & {
   question: TQuestionData
-  onFirstPartReset: () => void
+  // onFirstPartReset: () => void
   onFirstPartFinish: () => void
-  onSecondPartReset: () => void
+  // onSecondPartReset: () => void
   onSecondPartFinish: () => void
 }
 
