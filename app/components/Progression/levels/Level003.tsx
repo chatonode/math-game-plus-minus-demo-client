@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 
 import Backdrop from '../../UI/Overlay/Backdrop'
@@ -9,7 +11,7 @@ const Level003 = ({ onPrevious, onNext }: TLevelProps) => {
     <>
       <Backdrop>
         <Image
-          src="/assets/images/levels/level-002.png"
+          src="/assets/images/levels/level-003.png"
           width={500}
           height={500}
           //   sizes="(max-width: 768px) 100vw"

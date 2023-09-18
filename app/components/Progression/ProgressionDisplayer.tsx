@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react'
 
-import Backdrop from '../UI/Overlay/Backdrop'
 import Addition from '../Addition/Addition'
 import { ELevel } from './Level'
 import Level000 from './levels/Level000'
