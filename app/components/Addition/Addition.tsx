@@ -3,7 +3,7 @@
 import { useReducer, useCallback, useEffect } from 'react'
 
 import AdditionBoxes from './AdditionBoxes'
-import Box from '../UI/InGame/Box'
+import Box, { EBoxType } from '../UI/InGame/Box'
 
 import classes from './Addition.module.css'
 
@@ -15,8 +15,6 @@ import {
 } from '@/app/_helpers/BoxHelper'
 
 import { TQuestionData, EOperationType } from '@/app/context/dummy-context'
-
-import { EBoxType } from '../UI/InGame/Box'
 
 type TAdditionState = {
   first_part: {
@@ -141,6 +139,10 @@ const additionReducer = (
 
 type TAdditionProps = React.PropsWithChildren & {
   question: TQuestionData
+  onFirstPartReset: () => void
+  onFirstPartFinish: () => void
+  onSecondPartReset: () => void
+  onSecondPartFinish: () => void
 }
 
 const Addition = (props: TAdditionProps) => {
@@ -194,6 +196,7 @@ const Addition = (props: TAdditionProps) => {
       dispatch({
         type: EAdditionActionType.COMPLETE,
       })
+      props.onSecondPartFinish()
     }
   }
 
@@ -204,6 +207,7 @@ const Addition = (props: TAdditionProps) => {
       dispatch({
         type: EAdditionActionType.SUCCESS,
       })
+      props.onFirstPartFinish()
     }
 
     if (actual > expected) {
@@ -213,7 +217,7 @@ const Addition = (props: TAdditionProps) => {
     }
   }, [state.first_part.current_total])
 
-  console.log('SELAM component', props.question.params.expected_result)
+  // console.log('SELAM component', props.question.params.expected_result)
 
   // TODOOOO
   const ActiveBoxList = convertFromNumTo1DBoxDigits(
@@ -225,8 +229,8 @@ const Addition = (props: TAdditionProps) => {
     const boxValue = Math.pow(10, boxDigit)
     const boxType = boxValue.toString() as EBoxType
 
-    console.log('numberValueAsString:', numberValueAsString)
-    console.log('boxTypeAsString', boxType)
+    // console.log('numberValueAsString:', numberValueAsString)
+    // console.log('boxTypeAsString', boxType)
 
     // Edge Case: One Less Column
     if (boxValue > props.question.params.number_to_operate) {
@@ -296,6 +300,7 @@ const Addition = (props: TAdditionProps) => {
                   : state.second_part.current_total
               }
               onChange={totalChangeHandler}
+              maxLength={props.question.params.expected_result.toString().length}
             />
             <button
               onClick={totalInputSubmitHandler}

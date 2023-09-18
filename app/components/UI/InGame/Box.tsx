@@ -46,7 +46,7 @@ const Box = (props: TBoxProps) => {
       break
   }
 
-  console.log('IDBOX', props.id)
+  // console.log('IDBOX', props.id)
 
   const boxClickHandler = () => {
     if (props.onAdd) {
@@ -61,7 +61,7 @@ const Box = (props: TBoxProps) => {
       props.onAdd(props.type)
     }
 
-    console.log('WTF', props.clicksLeft)
+    // console.log('WTF', props.clicksLeft)
   }
 
   return (

@@ -1,20 +1,15 @@
 import React from 'react'
 
-import Addition from '@/app/components/Addition/Addition'
+import ProgressionDisplayer from './components/Progression/ProgressionDisplayer'
 
-import DUMMY_QUESTIONS, { EOperationType } from '@/app/context/dummy-context'
+import DUMMY_QUESTIONS from '@/app/context/dummy-context'
 
-const DUMMY_SINGLE_QUESTION = DUMMY_QUESTIONS[3]
+const DUMMY_SINGLE_QUESTION = DUMMY_QUESTIONS[0]
 
 const Home = () => {
-  const operation = DUMMY_SINGLE_QUESTION.params.operation
-
   return (
     <>
-      {operation === EOperationType.ADDITION && (
-        <Addition question={DUMMY_SINGLE_QUESTION} />
-      )}
-      {operation === EOperationType.SUBTRACTION && <p>TODO: Subtraction</p>}
+      <ProgressionDisplayer question={DUMMY_SINGLE_QUESTION} />
     </>
   )
 }
