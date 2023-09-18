@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import Iframe from 'react-iframe'
 
 import Addition from '../Addition/Addition'
 import { ELevel } from './Level'
@@ -56,6 +57,15 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
 
   return (
     <>
+      {/* <Iframe
+        url="/"
+        position="absolute"
+        // width="100%"
+        id="myId"
+        className="myClassname"
+        // height="100%"
+        styles={{ height: '600px' }}
+      /> */}
       {operation === EOperationType.ADDITION && (
         <Addition
           question={props.question}
@@ -86,10 +96,7 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
       )}
       {/* Level004 - In Game */}
       {currentLevel === ELevel.LEVEL_005 && (
-        <Level005
-          myLevel={ELevel.LEVEL_005}
-          onPrevious={onPrevious}
-        />
+        <Level005 myLevel={ELevel.LEVEL_005} onPrevious={onPrevious} />
       )}
     </>
   )
