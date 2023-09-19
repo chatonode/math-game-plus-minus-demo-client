@@ -3,20 +3,15 @@
 import Image from 'next/image'
 
 import Backdrop from '../../UI/Overlay/Backdrop'
+import OverlayImage from '../OverlayImage'
 
 import { TLevelProps } from '../Level'
 
-const Level001 = ({ onPrevious, onNext }: TLevelProps) => {
+const MidLevel = ({ myLevel, onPrevious, onNext }: TLevelProps) => {
   return (
     <>
       <Backdrop>
-        <Image
-          src="/assets/images/levels/level-001.png"
-          width={500}
-          height={500}
-          //   sizes="(max-width: 768px) 100vw"
-          alt="level-001"
-        />
+        <OverlayImage current_level={myLevel} />
         <button onClick={onPrevious}>
           <Image
             src="/assets/images/levels/arrow-left.png"
@@ -40,4 +35,4 @@ const Level001 = ({ onPrevious, onNext }: TLevelProps) => {
   )
 }
 
-export default Level001
+export default MidLevel

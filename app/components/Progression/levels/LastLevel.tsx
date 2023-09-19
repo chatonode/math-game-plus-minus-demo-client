@@ -3,20 +3,15 @@
 import Image from 'next/image'
 
 import Backdrop from '../../UI/Overlay/Backdrop'
+import OverlayImage from '../OverlayImage'
 
-import { TLevelProps } from '../Level'
+import { TLastLevelProps } from '../Level'
 
-const Level003 = ({ onPrevious, onNext }: TLevelProps) => {
+const LastLevel = ({ myLevel, onPrevious }: TLastLevelProps) => {
   return (
     <>
       <Backdrop>
-        <Image
-          src="/assets/images/levels/level-003.png"
-          width={500}
-          height={500}
-          //   sizes="(max-width: 768px) 100vw"
-          alt="level-003"
-        />
+        <OverlayImage current_level={myLevel} />
         <button onClick={onPrevious}>
           <Image
             src="/assets/images/levels/arrow-left.png"
@@ -26,7 +21,7 @@ const Level003 = ({ onPrevious, onNext }: TLevelProps) => {
             alt="left arrow"
           />
         </button>
-        <button onClick={onNext}>
+        <button disabled={true}>
           <Image
             src="/assets/images/levels/arrow-right.png"
             width={100}
@@ -40,4 +35,4 @@ const Level003 = ({ onPrevious, onNext }: TLevelProps) => {
   )
 }
 
-export default Level003
+export default LastLevel

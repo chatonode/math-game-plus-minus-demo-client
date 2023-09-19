@@ -1,14 +1,13 @@
 'use client'
 
 import React, { useState } from 'react'
-import Iframe from 'react-iframe'
 
 import Addition from '../Addition/Addition'
 import { ELevel } from './Level'
-import Level000 from './levels/Level000'
-import Level001 from './levels/Level001'
-import Level003 from './levels/Level003'
-import Level005 from './levels/Level005'
+import OverlayImage from './OverlayImage'
+import FirstLevel from './levels/FirstLevel'
+import MidLevel from './levels/MidLevel'
+import LastLevel from './levels/LastLevel'
 
 import { TQuestionData, EOperationType } from '@/app/context/dummy-context'
 
@@ -57,15 +56,6 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
 
   return (
     <>
-      {/* <Iframe
-        url="/"
-        position="absolute"
-        // width="100%"
-        id="myId"
-        className="myClassname"
-        // height="100%"
-        styles={{ height: '600px' }}
-      /> */}
       {operation === EOperationType.ADDITION && (
         <Addition
           question={props.question}
@@ -75,28 +65,37 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
           onSecondPartFinish={onNext}
         />
       )}
+
       {operation === EOperationType.SUBTRACTION && <p>TODO: Subtraction</p>}
+
+      {/* Levels */}
+
       {currentLevel === ELevel.LEVEL_000 && (
-        <Level000 myLevel={ELevel.LEVEL_000} onNext={onNext} />
+        <FirstLevel myLevel={ELevel.LEVEL_000} onNext={onNext} />
       )}
+
       {currentLevel === ELevel.LEVEL_001 && (
-        <Level001
+        <MidLevel
           myLevel={ELevel.LEVEL_001}
           onPrevious={onPrevious}
           onNext={onNext}
         />
       )}
+
       {/* Level002 - In Game */}
+
       {currentLevel === ELevel.LEVEL_003 && (
-        <Level003
+        <MidLevel
           myLevel={ELevel.LEVEL_003}
           onPrevious={onPrevious}
           onNext={onNext}
         />
       )}
+
       {/* Level004 - In Game */}
+
       {currentLevel === ELevel.LEVEL_005 && (
-        <Level005 myLevel={ELevel.LEVEL_005} onPrevious={onPrevious} />
+        <LastLevel myLevel={ELevel.LEVEL_005} onPrevious={onPrevious} />
       )}
     </>
   )
