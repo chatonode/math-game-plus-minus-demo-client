@@ -1,86 +1,48 @@
-import Image from 'next/image'
+import React from 'react'
+
+// import Image from 'next/image'
 
 // import Backdrop from '../UI/Overlay/Backdrop'
 
-// import classes from './OverlayHelper.module.css'
+import overlayImage from '@/public/assets/images/levels/overlay-image.png'
 
-import { ELevel } from './Level'
+type TOverlayHelperProps = React.PropsWithChildren
 
-type TOverlayHelperProps = {
-  current_level: ELevel
-  //   isHidden: boolean
-}
-
+// @ref-link: https://stackoverflow.com/questions/51842419/next-js-background-image-css-property-cant-load-the-image
 const OverlayImage = (props: TOverlayHelperProps) => {
+  // CSS
   // const backgroundImagePath = `../../../public/assets/images/levels/level-${props.current_level
   //   .toString()
   //   .padStart(3, '0')}.png` // 0 -> '000'
-  const backgroundImagePath = `/assets/images/levels/level-${props.current_level
-    .toString()
-    .padStart(3, '0')}.png` // 0 -> '000'
 
-  console.log(backgroundImagePath)
+  // JS
+  // const backgroundImagePath = `/assets/images/levels/level-${props.current_level
+  //   .toString()
+  //   .padStart(3, '0')}.png` // 0 -> '000'
+
+  // console.log(backgroundImagePath)
 
   return (
     <div
-    // style={{ backgroundImage: `url("${backgroundImagePath}")` }}
-    // className={classes['overlay-helper']}
+      style={{
+        backgroundImage: `url(${overlayImage.src})`,
+        width: '100%',
+        height: '100%',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+      }}
     >
-      <Image
-        src={backgroundImagePath}
-        width={800}
-        height={600}
-        //   sizes="(max-width: 768px) 100vw"
-        alt={`level-${props.current_level}`}
-      />
+      {props.children}
     </div>
+
+    // <Image
+    //   src={backgroundImagePath}
+    //   width={800}
+    //   height={600}
+    //   //   sizes="(max-width: 768px) 100vw"
+    //   alt={`level-${props.current_level}`}
+    // />
   )
 }
 
 export default OverlayImage
-
-
-// TODO: CSS Background
-// import React from 'react'
-
-// // import Image from 'next/image'
-
-// // import Backdrop from '../UI/Overlay/Backdrop'
-
-// import classes from './OverlayImage.module.css'
-
-// import { ELevel } from './Level'
-
-// type TOverlayHelperProps = React.PropsWithChildren & {
-//   // current_level: ELevel
-//   //   isHidden: boolean
-// }
-
-// const OverlayImage = (props: TOverlayHelperProps) => {
-//   // CSS
-//   // const backgroundImagePath = `../../../public/assets/images/levels/level-${props.current_level
-//   //   .toString()
-//   //   .padStart(3, '0')}.png` // 0 -> '000'
-
-//   // JS
-//   // const backgroundImagePath = `/assets/images/levels/level-${props.current_level
-//   //   .toString()
-//   //   .padStart(3, '0')}.png` // 0 -> '000'
-
-//   // console.log(backgroundImagePath)
-
-//   return (
-
-//     <div className={classes['overlay-image']}>{props.children}</div>
-
-//     // <Image
-//     //   src={backgroundImagePath}
-//     //   width={800}
-//     //   height={600}
-//     //   //   sizes="(max-width: 768px) 100vw"
-//     //   alt={`level-${props.current_level}`}
-//     // />
-//   )
-// }
-
-// export default OverlayImage

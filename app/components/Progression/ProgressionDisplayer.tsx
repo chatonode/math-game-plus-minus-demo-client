@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 
 import Addition from '../Addition/Addition'
 import { ELevel } from './Level'
-import OverlayImage from './OverlayImage'
 import FirstLevel from './levels/FirstLevel'
 import MidLevel from './levels/MidLevel'
 import LastLevel from './levels/LastLevel'
