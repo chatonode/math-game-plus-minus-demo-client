@@ -6,7 +6,6 @@
 }
 
 .leftbar {
-  background-color: blue;
   align-items: center;
   justify-content: center;
 }
@@ -16,5 +15,65 @@
 }
 
 .rightbar {
-  background-color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.rightbar .top {
+  height: 333px;
+  width: 400px;
+}
+
+.rightbar .top .reset {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.rightbar .top .reset button {
+  width: 80px;
+  height: 65px;
+}
+
+/* .rightbar .top .active-boxes {
+
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+.rightbar .input-container {
+  margin-left: 90px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rightbar .submit {
+  color: white;
+  background-color: rgb(32, 158, 32);
+  border-color: rgb(15, 105, 15);
+}
+
+.rightbar .submit:hover {
+  color: white;
+  background-color: rgb(34, 189, 34);
+  border-color: rgb(15, 105, 15);
+}
+
+.rightbar .submit:active {
+  color: white;
+  background-color: rgb(15, 105, 15);
+  border-color: rgb(15, 105, 15);
+}
+
+/* .rightbar .submit .disabled {
+} */

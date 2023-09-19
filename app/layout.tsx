@@ -1,10 +1,10 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Grandstander } from 'next/font/google'
 
 // import MainNavigation from './components/MainNavigation'
 
-const inter = Inter({ subsets: ['latin'] })
+const grandstander = Grandstander({ subsets: ['latin-ext'], weight: ["400", "700"] })
 
 export const metadata: Metadata = {
   title: 'Plus/Minus Game Demo',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
     <html lang="en">
-      <body>
+      <body className={grandstander.className}>
         {/* <section> */}
           {/* Include shared UI here e.g. a header or sidebar */}
           {/* <MainNavigation /> */}

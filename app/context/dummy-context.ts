@@ -41,6 +41,7 @@ const DUMMY_QUESTIONS: TQuestionData[] = [
     {
         id: Math.random().toString(),
         title: 'Depodaki Kutulara El At!',
+        // first_part: 'Deponda <span>7819</span> adet kutun var. Bugün <span>219</span> kutu daha sipariş geldi. Bu kutuları depona eksiksizce yerleştirir misin?',
         first_part: 'Deponda 7819 adet kutun var. Bugün 219 kutu daha sipariş geldi. Bu kutuları depona eksiksizce yerleştirir misin?',
         second_part: 'Tebrikler! Kutuları depoya başarıyla yerleştirdin. Şimdi deponda kaç kutu olduğunu yazarak stok müdürüne gönderir misin?',
         success_message: 'Tekrar Tebrikler! Depodaki kutular emin ellerde!',

@@ -2,8 +2,11 @@
 
 import { useReducer, useCallback, useEffect } from 'react'
 
+import additionBackgroundImage from '@/public/assets/images/UI_Bg.jpg'
+
 import AdditionBoxes from './AdditionBoxes'
 import Box, { EBoxType } from '../UI/InGame/Box'
+import Dialog from '../UI/InGame/Dialog'
 
 import classes from './Addition.module.css'
 
@@ -251,13 +254,22 @@ const Addition = (props: TAdditionProps) => {
 
   return (
     <>
-      <main className="container">
+      <main
+        className="container"
+        style={{
+          backgroundImage: `url(${additionBackgroundImage.src})`,
+          width: '100%',
+          height: '100%',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+        }}
+      >
         <div
           className={`${classes.bar} ${classes.leftbar}${
             state.first_part.finished ? ' ' + classes.locked : ''
           }`}
         >
-          <h2>Mevcut Durum</h2>
+          {/* <h2>Mevcut Durum</h2> */}
           <AdditionBoxes boxColumns={state.first_part.current_box_status} />
         </div>
 
@@ -266,32 +278,31 @@ const Addition = (props: TAdditionProps) => {
             state.second_part.finished ? ' ' + classes.locked : ''
           }`}
         >
-          <div>
-            <h3>Yeni Gelenler</h3>
-            <div>{ActiveBoxList}</div>
-            <div>
+          <div className={classes.top}>
+            <div className={classes.reset}>
               <button onClick={resetQuestionHandler}>Başa Dön</button>
             </div>
+            <div className={classes['active-boxes']}>{ActiveBoxList}</div>
           </div>
 
-          <div>
+          <>
             {!state.second_part.finished && !state.first_part.finished && (
-              <p>{props.question.first_part}</p>
+              <Dialog message={props.question.first_part}/>
             )}
             {!state.second_part.finished && state.first_part.finished && (
-              <p>{props.question.second_part}</p>
+              <Dialog message={props.question.second_part}/>
             )}
             {state.second_part.finished && (
-              <p>{props.question.success_message}</p>
+              <Dialog message={props.question.success_message}/>
             )}
-          </div>
+          </>
 
-          <div>
-            <h3>İşlem</h3>
+          <div className={classes['input-container']}>
+            {/* <h3>İşlem</h3>
             <label>{props.question.params.first_number}</label>
             <label>+</label>
             <label>{props.question.params.number_to_operate}</label>
-            <label>=</label>
+            <label>=</label> */}
             <input
               type="number"
               value={
@@ -300,11 +311,14 @@ const Addition = (props: TAdditionProps) => {
                   : state.second_part.current_total
               }
               onChange={totalChangeHandler}
-              maxLength={props.question.params.expected_result.toString().length}
+              maxLength={
+                props.question.params.expected_result.toString().length
+              }
             />
             <button
               onClick={totalInputSubmitHandler}
               disabled={state.first_part.finished ? undefined : true}
+              className={classes.submit}
             >
               Gönder
             </button>
