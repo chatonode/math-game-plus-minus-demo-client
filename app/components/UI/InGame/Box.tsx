@@ -15,6 +15,7 @@ export enum EBoxType {
   GOLD = '100',
   DIAMOND = '1000',
   PLATINIUM = '10000',
+  LEGENDARY = '100000',
   INFINITE = 'infinite',
 }
 
@@ -52,7 +53,10 @@ const Box = (props: TBoxProps) => {
       break
     case EBoxType.PLATINIUM:
       backgroundImage = `url(${box10000Image.src})`
-      // backgroundColor = '#e5e4e2'
+    // backgroundColor = '#e5e4e2'
+    // case EBoxType.LEGENDARY:
+    //   backgroundImage = `url(${box100000Image.src})`
+    //   // backgroundColor = '#543242'
       break
     // TODO: 100000
     default:
@@ -81,7 +85,10 @@ const Box = (props: TBoxProps) => {
   return (
     <button
       className={classes.box}
-      style={{ backgroundImage }}
+      style={{
+        backgroundImage,
+        // visibility: clicksLeft === 0 ? 'hidden' : 'visible',
+      }}
       onClick={boxClickHandler}
       disabled={clicksLeft === 0 ? true : undefined} // TODO: check & log conditions
       id={props.id}

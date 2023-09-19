@@ -11,7 +11,7 @@ type TAdditionBoxesProps = React.PropsWithChildren & {
 const AdditionBoxes = (props: TAdditionBoxesProps) => {
   return (
     <div className={classes['warehouse-container']}>
-      {/* [[9], [1], [8], [8]] */}
+      {/* [[9], [1], [8], [7]] */}
       {props.boxColumns.map((columnArray, numberOfDigits) => {
         return (
           <BoxColumn

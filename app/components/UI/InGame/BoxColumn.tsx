@@ -3,6 +3,8 @@ import React from 'react'
 import Box, { EBoxType } from './Box'
 import classes from './BoxColumn.module.css'
 
+import columnImage from '@/public/assets/images/ColumnImage.png'
+
 // const generateBoxType = (boxDigit: string): EBoxType => {
 //   switch (boxDigit) {
 //     case EBoxType.BRONZE:
@@ -69,7 +71,12 @@ type TBoxColumnProps = React.PropsWithChildren & {
 
 const BoxColumn = (props: TBoxColumnProps) => {
   return (
-    <div className={classes['column-container']}>
+    <div
+      className={classes['column-container']}
+      style={{ backgroundImage: `url(${columnImage.src})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'contain',}}
+    >
       {props.boxList.map((numberOfBoxesInColumn) => {
         // Calculate Box value
         const valueOfBox = parseInt(props.boxType) // 1, 10, 100, ...

@@ -1,6 +1,6 @@
 .warehouse-container {
-  height: 70%;
-  width: 80%;
+  height: 450px;
+  height: 454px;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-evenly;
