@@ -1,11 +1,42 @@
 p.dialog {
-    font-size: 20px;
-    line-height: 24px;
-    text-align: center;
-    width: 215px;
-    margin-left: 90px;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  width: 215px;
+  margin-left: 90px;
+
+  /* Animation */
+  animation: grow-and-shrink 4000ms;
+  /* animation-iteration-count: infinite; */
+  animation-timing-function: ease-in-out;
 }
 
 p.dialog span.params {
-    font-weight: 700;
+  font-weight: 700;
 }
+
+
+@keyframes grow-and-shrink {
+  0% {
+    transform: scale(1.5);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* @keyframes grow-and-shrink {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+} */
