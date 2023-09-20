@@ -17,7 +17,7 @@ type TProgressionDisplayerProps = React.PropsWithChildren & {
 const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
   const [minLevel] = useState<ELevel>(ELevel.LEVEL_000)
   const [currentLevel, setCurrentLevel] = useState<ELevel>(ELevel.LEVEL_000)
-  const [maxLevel] = useState<ELevel>(ELevel.LEVEL_009)
+  const [maxLevel] = useState<ELevel>(ELevel.LEVEL_004)
 
   const operation = props.question.params.operation
 
@@ -83,18 +83,18 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
 
       {/* Level002 - In Game */}
 
-      {currentLevel === ELevel.LEVEL_003 && (
+      {/* {currentLevel === ELevel.LEVEL_003 && (
         <MidLevel
           myLevel={ELevel.LEVEL_003}
           onPrevious={onPrevious}
           onNext={onNext}
         />
-      )}
+      )} */}
 
-      {/* Level004 - In Game */}
+      {/* Level003 - In Game */}
 
-      {currentLevel === ELevel.LEVEL_005 && (
-        <LastLevel myLevel={ELevel.LEVEL_005} onPrevious={onPrevious} />
+      {currentLevel === ELevel.LEVEL_004 && (
+        <LastLevel myLevel={ELevel.LEVEL_004} onPrevious={onPrevious} />
       )}
     </>
   )

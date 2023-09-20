@@ -5,6 +5,8 @@ import Image from 'next/image'
 import Backdrop from '../../UI/Overlay/Backdrop'
 import OverlayImage from '../OverlayImage'
 
+import classes from './Levels.module.css'
+
 import { TLevelProps } from '../Level'
 
 const MidLevel = ({ myLevel, onPrevious, onNext }: TLevelProps) => {
@@ -12,24 +14,26 @@ const MidLevel = ({ myLevel, onPrevious, onNext }: TLevelProps) => {
     <>
       <Backdrop>
         <OverlayImage>
-          <button onClick={onPrevious}>
-            <Image
-              src="/assets/images/levels/arrow-left.png"
-              width={100}
-              height={100}
-              // sizes="(max-width: 768px) 100vw"
-              alt="left arrow"
-            />
-          </button>
-          <button onClick={onNext}>
-            <Image
-              src="/assets/images/levels/arrow-right.png"
-              width={100}
-              height={100}
-              // sizes="(max-width: 768px) 100vw"
-              alt="right arrow"
-            />
-          </button>
+          <div className={classes['arrow-container']}>
+            <button onClick={onPrevious}>
+              <Image
+                src="/assets/images/levels/arrow-left.png"
+                width={100}
+                height={100}
+                // sizes="(max-width: 768px) 100vw"
+                alt="left arrow"
+              />
+            </button>
+            <button onClick={onNext}>
+              <Image
+                src="/assets/images/levels/arrow-right.png"
+                width={100}
+                height={100}
+                // sizes="(max-width: 768px) 100vw"
+                alt="right arrow"
+              />
+            </button>
+          </div>
         </OverlayImage>
       </Backdrop>
     </>
