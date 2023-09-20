@@ -65,7 +65,7 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
         />
       )}
 
-      {operation === EOperationType.SUBTRACTION && <p>TODO: Subtraction</p>}
+      {/* {operation === EOperationType.SUBTRACTION && <p>TODO: Subtraction</p>} */}
 
       {/* Levels */}
 

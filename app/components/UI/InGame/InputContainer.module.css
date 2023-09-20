@@ -4,23 +4,58 @@
   flex-direction: column;
 }
 
-.submit {
+.input-container .input {
+  /* width: 100%; */
+  /* font-size: 1rem; */
+  /* padding: 0.25rem; */
+  vertical-align: middle;
+  box-shadow: 0 0 0 transparent;
+  /* border: 1px solid #999; */
+  outline: 0 none;
+  transition: box-shadow 0.5s;
+}
+
+.input-container .input.error {
+  animation: shake 0.2s ease-in-out 0s 2;
+  box-shadow: 0 0 0.5em red;
+}
+
+@keyframes shake {
+  0% {
+    margin-left: 0rem;
+  }
+  25% {
+    margin-left: 0.5rem;
+  }
+  75% {
+    margin-left: -0.5rem;
+  }
+  100% {
+    margin-left: 0rem;
+  }
+}
+
+.input-container .submit {
   color: white;
   background-color: rgb(32, 158, 32);
   border-color: rgb(15, 105, 15);
 }
 
-.submit:hover {
+.input-container .submit:hover {
   color: white;
   background-color: rgb(34, 189, 34);
   border-color: rgb(15, 105, 15);
 }
 
-.submit:active {
+.input-container .submit:active {
   color: white;
   background-color: rgb(15, 105, 15);
   border-color: rgb(15, 105, 15);
 }
 
-/* .submit .disabled {
-  } */
+.input-container .submit .disabled,
+.submit:hover .disabled,
+.submit:active .disabled {
+  background-color: rgb(124, 133, 124);
+  border-color: rgb(109, 110, 109);
+}

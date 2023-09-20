@@ -4,8 +4,8 @@ import { useReducer, useCallback, useEffect } from 'react'
 
 import additionBackgroundImage from '@/public/assets/images/UI_Bg.jpg'
 
-import AdditionBoxes from './AdditionBoxes'
-import { EBoxType } from '../UI/InGame/Box'
+import WarehouseBoxList from './WarehouseBoxList'
+import { EBoxScore } from '../UI/InGame/Box'
 import Dialog from '../UI/InGame/Dialog'
 import InputContainer, { EInputType } from '../UI/InGame/InputContainer'
 
@@ -41,7 +41,7 @@ enum EAdditionActionType {
 }
 
 type TAdditionUpdateActionPayload = {
-  selected_box_type: EBoxType
+  selected_box_type: EBoxScore
 }
 
 type TAdditionResetActionPayload = {
@@ -125,14 +125,17 @@ const additionReducer = (
         },
       }
     // TODO: Failure Case
-    // case EAdditionActionType.FAILURE:
-    //   return {
-    //     ...prevAdditionState,
-    //     first_part: {
-    //       ...prevAdditionState.first_part,
-    //       finished: true,
-    //     },
-    //   }
+    case EAdditionActionType.FAILURE:
+      return {
+        ...prevAdditionState,
+        first_part: {
+          ...prevAdditionState.first_part,
+        },
+        second_part: {
+          ...prevAdditionState.second_part,
+          finished: false,
+        },
+      }
     default:
       return {
         ...prevAdditionState,
@@ -172,7 +175,7 @@ const Addition = (props: TAdditionProps) => {
     })
   }, [])
 
-  const addBoxHandler = (type: EBoxType) => {
+  const addBoxHandler = (type: EBoxScore) => {
     dispatch({
       type: EAdditionActionType.UPDATE,
       payload: {
@@ -215,11 +218,11 @@ const Addition = (props: TAdditionProps) => {
       props.onFirstPartFinish()
     }
 
-    if (actual > expected) {
-      dispatch({
-        type: EAdditionActionType.FAILURE,
-      })
-    }
+    // if (actual > expected) {
+    //   dispatch({
+    //     type: EAdditionActionType.FAILURE,
+    //   })
+    // }
   }, [state.first_part.current_total])
 
   return (
@@ -239,8 +242,7 @@ const Addition = (props: TAdditionProps) => {
             state.first_part.finished ? ' ' + classes.locked : ''
           }`}
         >
-          {/* <h2>Mevcut Durum</h2> */}
-          <AdditionBoxes boxColumns={state.first_part.current_box_status} />
+          <WarehouseBoxList boxColumns={state.first_part.current_box_status} />
         </div>
 
         <div
@@ -271,19 +273,30 @@ const Addition = (props: TAdditionProps) => {
             )}
           </>
 
-          <InputContainer<number>
-            type={EInputType.NUMBER}
-            currentValue={
-              state.second_part.current_total === 0
-                ? ''
-                : state.second_part.current_total
-            }
-            changeHandler={totalChangeHandler}
-            submitHandler={totalInputSubmitHandler}
-            min={0}
-            max={props.question.params.expected_result.toString().length}
-            disabled={state.first_part.finished ? false : true}
-          />
+          {state.first_part.finished && (
+            <InputContainer<number>
+              type={EInputType.NUMBER}
+              currentValue={
+                state.second_part.current_total === 0
+                  ? ''
+                  : state.second_part.current_total
+              }
+              // TODO: Check Condition
+              hasError={
+                state.second_part.current_total !==
+                  props.question.params.expected_result &&
+                state.second_part.current_total !==
+                  props.question.params.number_to_operate
+                  ? true
+                  : false
+              }
+              changeHandler={totalChangeHandler}
+              submitHandler={totalInputSubmitHandler}
+              min={0}
+              max={props.question.params.expected_result.toString().length}
+              disabled={state.first_part.finished ? false : true}
+            />
+          )}
         </div>
       </main>
     </>

@@ -1,24 +1,24 @@
 import React from 'react'
 
-import Box, { EBoxType } from './Box'
+import Box, { EBoxScore } from './Box'
 import classes from './BoxColumn.module.css'
 
 import columnImage from '@/public/assets/images/ColumnImage.png'
 
-// const generateBoxType = (boxDigit: string): EBoxType => {
+// const generatEBoxScore = (boxDigit: string): EBoxScore => {
 //   switch (boxDigit) {
-//     case EBoxType.BRONZE:
-//       return EBoxType.BRONZE
-//     case EBoxType.SILVER:
-//       return EBoxType.SILVER
-//     case EBoxType.GOLD:
-//       return EBoxType.GOLD
-//     case EBoxType.DIAMOND:
-//       return EBoxType.DIAMOND
-//     case EBoxType.PLATINIUM:
-//       return EBoxType.PLATINIUM
+//     case EBoxScore.BRONZE:
+//       return EBoxScore.BRONZE
+//     case EBoxScore.SILVER:
+//       return EBoxScore.SILVER
+//     case EBoxScore.GOLD:
+//       return EBoxScore.GOLD
+//     case EBoxScore.DIAMOND:
+//       return EBoxScore.DIAMOND
+//     case EBoxScore.PLATINIUM:
+//       return EBoxScore.PLATINIUM
 //     default:
-//       return EBoxType.INFINITE
+//       return EBoxScore.INFINITE
 //   }
 // }
 
@@ -66,20 +66,23 @@ import columnImage from '@/public/assets/images/ColumnImage.png'
 
 type TBoxColumnProps = React.PropsWithChildren & {
   boxList: number[]
-  boxType: EBoxType
+  boxScore: EBoxScore
+  id: string
 }
 
 const BoxColumn = (props: TBoxColumnProps) => {
   return (
     <div
       className={classes['column-container']}
-      style={{ backgroundImage: `url(${columnImage.src})`,
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'contain',}}
+      style={{
+        backgroundImage: `url(${columnImage.src})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'contain',
+      }}
     >
       {props.boxList.map((numberOfBoxesInColumn) => {
-        // Calculate Box value
-        const valueOfBox = parseInt(props.boxType) // 1, 10, 100, ...
+        // Calculate Box Score
+        const scoreOfBox = parseInt(props.boxScore) // 1, 10, 100, ...
 
         // Loop N Times
         // @ref-link: https://bobbyhadz.com/blog/react-create-number-of-elements
@@ -88,9 +91,18 @@ const BoxColumn = (props: TBoxColumnProps) => {
           (_, index) => {
             // Generate unique key
             const numberValue = index + 1
-            const boxKey = numberValue * valueOfBox
+            const boxKey = numberValue * scoreOfBox
 
-            return <Box key={boxKey} type={props.boxType} />
+            return (
+              <Box
+                key={boxKey}
+                box={{
+                  id: `${props.id}-${boxKey}`,
+                  score: props.boxScore,
+                  isActiveBox: false,
+                }}
+              />
+            )
           }
         )
         return BoxList

@@ -1,19 +1,23 @@
 import React from 'react'
 
 import { convertFromNumTo1DBoxDigits } from '@/app/_helpers/BoxHelper'
-import Box, { EBoxType } from '../UI/InGame/Box'
+import Box, { EBoxScore } from '../UI/InGame/Box'
 
 import classes from './ActiveBoxList.module.css'
 
 type TActiveBoxList = React.PropsWithChildren & {
   initialRemaining: number
   currentRemaining: number
-  onAdd: (type: EBoxType) => void
+  onAdd: (type: EBoxScore) => void
   onReset: () => void
   disabled: boolean
 }
 
 const ActiveBoxList = (props: TActiveBoxList) => {
+  // const addBoxHandler = () => {
+  //   props.onAdd()
+  // }
+
   const generatedList = convertFromNumTo1DBoxDigits(
     // For 100 >> 219 - (7919 - 7819) = 119
     props.currentRemaining,
@@ -24,7 +28,7 @@ const ActiveBoxList = (props: TActiveBoxList) => {
     (numberValueAsString, boxDigit) => {
       const numberValue = parseInt(numberValueAsString)
       const boxValue = Math.pow(10, boxDigit)
-      const boxType = boxValue.toString() as EBoxType
+      const boxType = boxValue.toString() as EBoxScore
 
       // console.log('numberValueAsString:', numberValueAsString)
       // console.log('boxTypeAsString', boxType)
@@ -36,12 +40,14 @@ const ActiveBoxList = (props: TActiveBoxList) => {
 
       return (
         <Box
-          key={`${numberValueAsString}-${boxType}`}
-          id={`${numberValueAsString}-${boxType}`}
-          type={boxType}
-          onAdd={props.onAdd.bind(null, boxType)}
-          disabled={props.disabled ? undefined : true}
-          clicksLeft={numberValueAsString}
+          key={`${numberValue}-${boxType}`}
+          box={{
+            id: `${numberValue}-${boxType}`,
+            score: boxType,
+            isActiveBox: true,
+            onAdd: props.onAdd,
+            clicksLeft: numberValue,
+          }}
         />
       )
     }
