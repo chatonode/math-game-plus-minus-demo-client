@@ -13,7 +13,13 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   width: 49px;
   height: 454px;
+}
+
+/* .column-container:before, */
+.column-container:after {
+  content: "";
+  height: 9px;
 }

@@ -18,8 +18,8 @@ const FirstLevel = ({ myLevel, onNext }: TFirstLevelProps) => {
             <button disabled={true}>
               <Image
                 src="/assets/images/levels/arrow-left.png"
-                width={100}
-                height={100}
+                width={50}
+                height={50}
                 // sizes="(max-width: 768px) 100vw"
                 alt="left arrow"
               />
@@ -27,8 +27,8 @@ const FirstLevel = ({ myLevel, onNext }: TFirstLevelProps) => {
             <button onClick={onNext}>
               <Image
                 src="/assets/images/levels/arrow-right.png"
-                width={100}
-                height={100}
+                width={50}
+                height={50}
                 // sizes="(max-width: 768px) 100vw"
                 alt="right arrow"
               />

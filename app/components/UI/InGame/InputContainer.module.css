@@ -1,0 +1,26 @@
+.input-container {
+  margin-left: 90px;
+  display: flex;
+  flex-direction: column;
+}
+
+.submit {
+  color: white;
+  background-color: rgb(32, 158, 32);
+  border-color: rgb(15, 105, 15);
+}
+
+.submit:hover {
+  color: white;
+  background-color: rgb(34, 189, 34);
+  border-color: rgb(15, 105, 15);
+}
+
+.submit:active {
+  color: white;
+  background-color: rgb(15, 105, 15);
+  border-color: rgb(15, 105, 15);
+}
+
+/* .submit .disabled {
+  } */

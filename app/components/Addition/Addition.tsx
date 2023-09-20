@@ -5,19 +5,19 @@ import { useReducer, useCallback, useEffect } from 'react'
 import additionBackgroundImage from '@/public/assets/images/UI_Bg.jpg'
 
 import AdditionBoxes from './AdditionBoxes'
-import Box, { EBoxType } from '../UI/InGame/Box'
+import { EBoxType } from '../UI/InGame/Box'
 import Dialog from '../UI/InGame/Dialog'
+import InputContainer, { EInputType } from '../UI/InGame/InputContainer'
 
 import classes from './Addition.module.css'
 
 import {
   convertFromNumTo2DBoxDigits,
-  convertFromNumTo1DBoxDigits,
   convertFrom1DBoxDigitsToNum,
-  getClicksLeft,
 } from '@/app/_helpers/BoxHelper'
 
 import { TQuestionData, EOperationType } from '@/app/context/dummy-context'
+import ActiveBoxList from './ActiveBoxList'
 
 type TAdditionState = {
   first_part: {
@@ -192,7 +192,9 @@ const Addition = (props: TAdditionProps) => {
     })
   }
 
-  const totalInputSubmitHandler = () => {
+  const totalInputSubmitHandler = (event: React.MouseEvent) => {
+    event.preventDefault()
+
     if (
       state.second_part.current_total === props.question.params.expected_result
     ) {
@@ -220,38 +222,6 @@ const Addition = (props: TAdditionProps) => {
     }
   }, [state.first_part.current_total])
 
-  // console.log('SELAM component', props.question.params.expected_result)
-
-  // TODOOOO
-  const ActiveBoxList = convertFromNumTo1DBoxDigits(
-    // For 100 >> 219 - (7919 - 7819) = 119
-    props.question.params.expected_result - state.first_part.current_total,
-    props.question.params.number_to_operate
-  ).map((numberValueAsString, boxDigit) => {
-    const numberValue = parseInt(numberValueAsString)
-    const boxValue = Math.pow(10, boxDigit)
-    const boxType = boxValue.toString() as EBoxType
-
-    // console.log('numberValueAsString:', numberValueAsString)
-    // console.log('boxTypeAsString', boxType)
-
-    // Edge Case: One Less Column
-    if (boxValue > props.question.params.number_to_operate) {
-      return // Early
-    }
-
-    return (
-      <Box
-        key={`${numberValueAsString}-${boxType}`}
-        id={`${numberValueAsString}-${boxType}`}
-        type={boxType}
-        onAdd={addBoxHandler}
-        disabled={state.first_part.finished === true ? true : undefined}
-        clicksLeft={numberValueAsString}
-      />
-    )
-  })
-
   return (
     <>
       <main
@@ -278,51 +248,42 @@ const Addition = (props: TAdditionProps) => {
             state.second_part.finished ? ' ' + classes.locked : ''
           }`}
         >
-          <div className={classes.top}>
-            <div className={classes.reset}>
-              <button onClick={resetQuestionHandler}>Başa Dön</button>
-            </div>
-            <div className={classes['active-boxes']}>{ActiveBoxList}</div>
-          </div>
+          <ActiveBoxList
+            currentRemaining={
+              props.question.params.expected_result -
+              state.first_part.current_total
+            }
+            initialRemaining={props.question.params.number_to_operate}
+            onAdd={addBoxHandler}
+            onReset={resetQuestionHandler}
+            disabled={state.first_part.finished === true ? true : false}
+          />
 
           <>
             {!state.second_part.finished && !state.first_part.finished && (
-              <Dialog message={props.question.first_part}/>
+              <Dialog message={props.question.first_part} />
             )}
             {!state.second_part.finished && state.first_part.finished && (
-              <Dialog message={props.question.second_part}/>
+              <Dialog message={props.question.second_part} />
             )}
             {state.second_part.finished && (
-              <Dialog message={props.question.success_message}/>
+              <Dialog message={props.question.success_message} />
             )}
           </>
 
-          <div className={classes['input-container']}>
-            {/* <h3>İşlem</h3>
-            <label>{props.question.params.first_number}</label>
-            <label>+</label>
-            <label>{props.question.params.number_to_operate}</label>
-            <label>=</label> */}
-            <input
-              type="number"
-              value={
-                state.second_part.current_total === 0
-                  ? ''
-                  : state.second_part.current_total
-              }
-              onChange={totalChangeHandler}
-              maxLength={
-                props.question.params.expected_result.toString().length
-              }
-            />
-            <button
-              onClick={totalInputSubmitHandler}
-              disabled={state.first_part.finished ? undefined : true}
-              className={classes.submit}
-            >
-              Gönder
-            </button>
-          </div>
+          <InputContainer<number>
+            type={EInputType.NUMBER}
+            currentValue={
+              state.second_part.current_total === 0
+                ? ''
+                : state.second_part.current_total
+            }
+            changeHandler={totalChangeHandler}
+            submitHandler={totalInputSubmitHandler}
+            min={0}
+            max={props.question.params.expected_result.toString().length}
+            disabled={state.first_part.finished ? false : true}
+          />
         </div>
       </main>
     </>
