@@ -7,7 +7,7 @@ import box10Image from '@/public/assets/images/boxes/box10.png'
 import box100Image from '@/public/assets/images/boxes/box100.png'
 import box1000Image from '@/public/assets/images/boxes/box1000.png'
 import box10000Image from '@/public/assets/images/boxes/box10000.png'
-import box100KImage from '@/public/assets/images/boxes/box100000.png'
+import box100000Image from '@/public/assets/images/boxes/box100000.png'
 
 type TBox = {
   id: string
@@ -60,12 +60,12 @@ function Box<T extends TBox>(props: TBoxProps<T>) {
       break
     case EBoxScore.PLATINIUM:
       backgroundImage = `url(${box10000Image.src})`
-    // backgroundColor = '#e5e4e2'
+      // backgroundColor = '#e5e4e2'
+      break
     case EBoxScore.LEGENDARY:
-      backgroundImage = `url(${box100KImage.src})`
+      backgroundImage = `url(${box100000Image.src})`
       // backgroundColor = '#543242'
       break
-    // TODO: 100000
     default:
       backgroundImage = 'unset'
       break
