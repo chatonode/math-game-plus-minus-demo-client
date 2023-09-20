@@ -71,29 +71,15 @@ function Box<T extends TBox>(props: TBoxProps<T>) {
       break
   }
 
-  // console.log('IDBOX', props.id)
-
   const boxClickHandler = () => {
     if (!props.box.isActiveBox) {
       return
     }
 
-    // setClicksLeft((prevClickState) => {
-    //   if (prevClickState === 0) {
-    //     // early
-    //     return prevClickState
-    //   }
-    //   return prevClickState--
-    // })
-
     if (props.box.onAdd) {
       props.box.onAdd(props.box.score)
     }
-
-    // console.log('WTF', props.clicksLeft)
   }
-
-  // console.log('I am the box:', props.box)
 
   // PassiveBox
   if (!props.box.isActiveBox) {

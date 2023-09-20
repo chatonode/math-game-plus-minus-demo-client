@@ -1,9 +1,7 @@
 .box {
-  /* background: #000; */
   width: 41px;
   height: 41px;
   border-width: 0;
   padding: 0;
   background-color: unset;
 }
-

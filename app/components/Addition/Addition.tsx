@@ -217,12 +217,6 @@ const Addition = (props: TAdditionProps) => {
       })
       props.onFirstPartFinish()
     }
-
-    // if (actual > expected) {
-    //   dispatch({
-    //     type: EAdditionActionType.FAILURE,
-    //   })
-    // }
   }, [state.first_part.current_total])
 
   return (

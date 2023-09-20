@@ -2,26 +2,14 @@ import React from 'react'
 
 // import Image from 'next/image'
 
-// import Backdrop from '../UI/Overlay/Backdrop'
-
 import overlayImage from '@/public/assets/images/levels/overlay-image.png'
+
+import classes from './OverlayImage.module.css'
 
 type TOverlayHelperProps = React.PropsWithChildren
 
 // @ref-link: https://stackoverflow.com/questions/51842419/next-js-background-image-css-property-cant-load-the-image
 const OverlayImage = (props: TOverlayHelperProps) => {
-  // CSS
-  // const backgroundImagePath = `../../../public/assets/images/levels/level-${props.current_level
-  //   .toString()
-  //   .padStart(3, '0')}.png` // 0 -> '000'
-
-  // JS
-  // const backgroundImagePath = `/assets/images/levels/level-${props.current_level
-  //   .toString()
-  //   .padStart(3, '0')}.png` // 0 -> '000'
-
-  // console.log(backgroundImagePath)
-
   return (
     <div
       style={{
@@ -31,6 +19,7 @@ const OverlayImage = (props: TOverlayHelperProps) => {
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
       }}
+      className={classes['overlay-image']}
     >
       {props.children}
     </div>

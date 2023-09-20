@@ -14,10 +14,6 @@ type TActiveBoxList = React.PropsWithChildren & {
 }
 
 const ActiveBoxList = (props: TActiveBoxList) => {
-  // const addBoxHandler = () => {
-  //   props.onAdd()
-  // }
-
   const generatedList = convertFromNumTo1DBoxDigits(
     // For 100 >> 219 - (7919 - 7819) = 119
     props.currentRemaining,
@@ -29,9 +25,6 @@ const ActiveBoxList = (props: TActiveBoxList) => {
       const numberValue = parseInt(numberValueAsString)
       const boxValue = Math.pow(10, boxDigit)
       const boxType = boxValue.toString() as EBoxScore
-
-      // console.log('numberValueAsString:', numberValueAsString)
-      // console.log('boxTypeAsString', boxType)
 
       // Edge Case: One Less Column
       //   if (boxValue > props.question.params.number_to_operate) {

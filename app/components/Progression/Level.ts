@@ -13,9 +13,6 @@ export enum ELevel {
     // LEVEL_009 = 9,
 }
 
-// const asd = ELevel.LEVEL_000.toString().padStart(3, '0')
-
-
 export enum ELevelImageName {
     LEVEL_000 = 'level-000',
     LEVEL_001 = 'level-001',

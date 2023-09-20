@@ -1,3 +1,13 @@
 /* .overlay-image {
-  background-image: url('../../../public/assets/images/overlay-image.png');
+  animation: slide-in 1500ms;
+} */
+
+/* https://www.joshwcomeau.com/animation/keyframe-animations/ */
+/* @keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
 } */

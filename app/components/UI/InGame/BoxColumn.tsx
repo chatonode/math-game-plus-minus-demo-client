@@ -5,65 +5,6 @@ import classes from './BoxColumn.module.css'
 
 import columnImage from '@/public/assets/images/ColumnImage.png'
 
-// const generatEBoxScore = (boxDigit: string): EBoxScore => {
-//   switch (boxDigit) {
-//     case EBoxScore.BRONZE:
-//       return EBoxScore.BRONZE
-//     case EBoxScore.SILVER:
-//       return EBoxScore.SILVER
-//     case EBoxScore.GOLD:
-//       return EBoxScore.GOLD
-//     case EBoxScore.DIAMOND:
-//       return EBoxScore.DIAMOND
-//     case EBoxScore.PLATINIUM:
-//       return EBoxScore.PLATINIUM
-//     default:
-//       return EBoxScore.INFINITE
-//   }
-// }
-
-// const getBoxComponents = (columnsWithTimes: number[][]) => {
-//   const newBoxes: (typeof Box)[][] = []
-//   columnsWithTimes.forEach((digitColumn: number[], index: number) => {
-//     while (index !== columnsWithTimes.length) {
-//       // 1-Digit
-//       if (index === columnsWithTimes.length - 1) {
-//         newBoxes.push(getNumberOfBox(digitColumn[index]))
-//       }
-
-//       // 2-Digits
-//       if (index === columnsWithTimes.length - 2) {
-//         newBoxes.push(getNumberOfBox(digitColumn[index]))
-//       }
-
-//       // 3-Digits
-//       if (index === columnsWithTimes.length - 3) {
-//         newBoxes.push(getNumberOfBox(digitColumn[index]))
-//       }
-
-//       // 4-Digits
-//       if (index === columnsWithTimes.length - 4) {
-//         newBoxes.push(getNumberOfBox(digitColumn[index]))
-//       }
-
-//       // 5-Digits
-//       if (index === columnsWithTimes.length - 5) {
-//         newBoxes.push(getNumberOfBox(digitColumn[index]))
-//       }
-//     }
-//   })
-//   return newBoxes
-// }
-
-// const getNumberOfBox = (numberOfBoxesInColumn: number) => {
-//   const arrayWithBoxObjects = []
-//   for (let i = 0; i < numberOfBoxesInColumn; i++) {
-//     arrayWithBoxObjects.push(Box)
-//   }
-
-//   return arrayWithBoxObjects
-// }
-
 type TBoxColumnProps = React.PropsWithChildren & {
   boxList: number[]
   boxScore: EBoxScore
