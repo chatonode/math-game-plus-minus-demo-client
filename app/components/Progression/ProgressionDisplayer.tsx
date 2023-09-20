@@ -96,6 +96,7 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
       {currentLevel === ELevel.LEVEL_004 && (
         <LastLevel myLevel={ELevel.LEVEL_004} onPrevious={onPrevious} />
       )}
+
     </>
   )
 }

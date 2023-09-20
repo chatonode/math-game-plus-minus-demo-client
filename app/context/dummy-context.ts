@@ -47,10 +47,11 @@ const produceQuestions = (params: Pick<TQuestionParams, "first_number" | "number
 
 const DUMMY_QUESTIONS = produceQuestions(
     [
-        {
-            first_number: 7819,
-            number_to_operate: 219,
-        },
+        // {
+        //     first_number: 7819,
+        //     number_to_operate: 219,
+        // },
+        // FIRST QUESTION
         {
             first_number: 8675,
             number_to_operate: 46945,

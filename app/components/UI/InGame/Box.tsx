@@ -83,6 +83,7 @@ function Box<T extends TBox>(props: TBoxProps<T>) {
 
   // PassiveBox
   if (!props.box.isActiveBox) {
+    console.log('Passive Box:', props.box.id)
     return (
       <button
         className={classes.box}
@@ -96,6 +97,7 @@ function Box<T extends TBox>(props: TBoxProps<T>) {
   }
 
   // ActiveBox
+  console.log('Active Box:', props.box.id)
   return (
     <button
       className={classes.box}
@@ -106,7 +108,9 @@ function Box<T extends TBox>(props: TBoxProps<T>) {
       onClick={boxClickHandler}
       disabled={props.box.clicksLeft === 0 ? true : undefined} // TODO: check & log conditions
       id={props.box.id}
-    />
+    >
+      <span>x{props.box.clicksLeft}</span>
+    </button>
   )
 }
 

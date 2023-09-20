@@ -32,16 +32,22 @@ const ActiveBoxList = (props: TActiveBoxList) => {
       //   }
 
       return (
-        <Box
-          key={`${numberValue}-${boxType}`}
-          box={{
-            id: `${numberValue}-${boxType}`,
-            score: boxType,
-            isActiveBox: true,
-            onAdd: props.onAdd,
-            clicksLeft: numberValue,
-          }}
-        />
+        <div
+          className={
+            boxDigit <= 2 ? classes['first-row'] : classes['second-row']
+          }
+        >
+          <Box
+            key={`${numberValue}-${boxType}`}
+            box={{
+              id: `${numberValue}-${boxType}`,
+              score: boxType,
+              isActiveBox: true,
+              onAdd: props.onAdd,
+              clicksLeft: numberValue,
+            }}
+          />
+        </div>
       )
     }
   )
