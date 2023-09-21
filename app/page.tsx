@@ -15,7 +15,7 @@ const DUMMY_SINGLE_QUESTION = DUMMY_QUESTIONS[0]
 const Home = () => {
   return (
     <>
-      <ProgressionDisplayer question={DUMMY_SINGLE_QUESTION} />
+      <ProgressionDisplayer questions={DUMMY_QUESTIONS} />
     </>
   )
 }

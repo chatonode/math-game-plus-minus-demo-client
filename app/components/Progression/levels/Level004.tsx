@@ -5,15 +5,19 @@ import Image from 'next/image'
 import Backdrop from '../../UI/Overlay/Backdrop'
 import OverlayImage from '../OverlayImage'
 
+import level004Image from '@/public/assets/images/levels/level-004.png'
+
 import classes from './Levels.module.css'
 
-import { TLastLevelProps } from '../Level'
+import { TLevelProps } from '../Level'
 
-const LastLevel = ({ myLevel, onPrevious }: TLastLevelProps) => {
+const Level004 = ({ myLevel, onPrevious, onNext }: TLevelProps) => {
   return (
     <>
       <Backdrop>
-        {/* <OverlayImage> */}
+        <OverlayImage
+          imageSrc={level004Image.src}
+        >
           <div className={classes['arrow-container']}>
             <button onClick={onPrevious}>
               <Image
@@ -24,7 +28,7 @@ const LastLevel = ({ myLevel, onPrevious }: TLastLevelProps) => {
                 alt="left arrow"
               />
             </button>
-            <button disabled={true}>
+            <button onClick={onNext}>
               <Image
                 src="/assets/images/levels/arrow-right.png"
                 width={50}
@@ -34,10 +38,10 @@ const LastLevel = ({ myLevel, onPrevious }: TLastLevelProps) => {
               />
             </button>
           </div>
-        {/* </OverlayImage> */}
+        </OverlayImage>
       </Backdrop>
     </>
   )
 }
 
-export default LastLevel
+export default Level004

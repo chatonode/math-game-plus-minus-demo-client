@@ -83,7 +83,7 @@ function Box<T extends TBox>(props: TBoxProps<T>) {
 
   // PassiveBox
   if (!props.box.isActiveBox) {
-    console.log('Passive Box:', props.box.id)
+    // console.log('Passive Box:', props.box.id)
     return (
       <button
         className={classes.box}
@@ -97,7 +97,7 @@ function Box<T extends TBox>(props: TBoxProps<T>) {
   }
 
   // ActiveBox
-  console.log('Active Box:', props.box.id)
+  // console.log('Active Box:', props.box.id)
   return (
     <button
       className={classes.box}

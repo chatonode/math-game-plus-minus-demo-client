@@ -1,0 +1,66 @@
+import React from 'react'
+import dynamic from 'next/dynamic'
+
+// import Image from 'next/image'
+
+import overlayImage from '@/public/assets/images/levels/level-000.png'
+
+// import { ImagePathsArray as ipa } from './OverlayImages'
+
+import classes from './OverlayImage.module.css'
+
+type TOverlayHelperProps = React.PropsWithChildren & {
+  level: number
+}
+
+// @ref-link: https://stackoverflow.com/questions/51842419/next-js-background-image-css-property-cant-load-the-image
+const OverlayImage = (props: TOverlayHelperProps) => {
+  // console.log(props.level)
+  // // console.log('fullpath', `@/public/assets/images/levels/${props.level}.png`)
+  // console.log('src', overlayImage.src)
+
+  // const generateImagePath = () => {
+  //   const imagePath = `@/public/assets/images/levels/level-${props.level
+  //     .toString()
+  //     .padStart(3, '0')}.png`
+
+  //   console.log('imagePath', imagePath)
+  //   return imagePath
+  // }
+
+  return (
+    <div
+      style={{
+        // backgroundImage: `url(${
+        //   (dynamic(() =>
+        //     import(generateImagePath()).then((value) => {
+        //       console.log('inside dynamic import:', value.src)
+        //       return value.src
+        //     })
+        //   ),
+        //   {
+        //     loading: () => <p>Loading...</p>,
+        //   })
+        // })`,
+        backgroundImage: `url(${overlayImage.src})`,
+        width: '100%',
+        height: '100%',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+      }}
+      className={classes['overlay-image']}
+    >
+      {props.children}
+    </div>
+
+    // <Image
+    //   src={backgroundImagePath}
+    //   width={800}
+    //   height={600}
+    //   //   sizes="(max-width: 768px) 100vw"
+    //   alt={`level-${props.current_level}`}
+    // />
+  )
+}
+
+export default OverlayImage

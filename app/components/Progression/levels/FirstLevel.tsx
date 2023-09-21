@@ -13,7 +13,10 @@ const FirstLevel = ({ myLevel, onNext }: TFirstLevelProps) => {
   return (
     <>
       <Backdrop>
-        <OverlayImage>
+        {/* <OverlayImage
+          // imagePath={`level-${myLevel.toString().padStart(3, '0')}`}
+          // level={myLevel}
+        > */}
           <div className={classes['arrow-container']}>
             <button disabled={true}>
               <Image
@@ -34,7 +37,7 @@ const FirstLevel = ({ myLevel, onNext }: TFirstLevelProps) => {
               />
             </button>
           </div>
-        </OverlayImage>
+        {/* </OverlayImage> */}
       </Backdrop>
     </>
   )

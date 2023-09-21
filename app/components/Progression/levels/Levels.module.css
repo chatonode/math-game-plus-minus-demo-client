@@ -1,18 +1,19 @@
 .arrow-container {
-    display: flex;
-    justify-content: flex-end;
-    width: 232px;
-    height: 109px;
+  display: flex;
+  justify-content: flex-end;
+  width: 232px;
+  height: 109px;
 
-    position: absolute;
-    left: auto;
-    right: 0;
+  position: absolute;
+  left: auto;
+  right: 0;
 
-    top: auto;
-    bottom: 0;
+  top: auto;
+  bottom: 0;
 }
 
 .arrow-container button {
-    background-color: red;
-    opacity: 50%;
+  background-color: unset;
+  border-color: unset;
+  border: 0;
 }
