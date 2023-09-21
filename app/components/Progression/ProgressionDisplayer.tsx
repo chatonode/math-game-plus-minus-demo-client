@@ -1,15 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 
 import Addition from '../Addition/Addition'
 import { ELevel } from './Level'
-import Level000 from './levels/Level000'
-import Level001 from './levels/Level001'
-import Level002 from './levels/Level002'
-import Level003 from './levels/Level003'
-import Level004 from './levels/Level004'
-import Level011 from './levels/Level011'
+import FirstLevel from './levels/FirstLevel'
+import MidLevel from './levels/MidLevel'
+import LastLevel from './levels/LastLevel'
 
 import { TQuestionData, EOperationType } from '@/app/context/dummy-context'
 
@@ -20,9 +17,7 @@ type TProgressionDisplayerProps = React.PropsWithChildren & {
 const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
   const [minLevel] = useState<ELevel>(ELevel.LEVEL_000)
   const [currentLevel, setCurrentLevel] = useState<ELevel>(ELevel.LEVEL_000)
-  const [maxLevel] = useState<ELevel>(ELevel.LEVEL_011)
-
-  // const operation = props.question.params.operation
+  const [maxLevel] = useState<ELevel>(ELevel.LEVEL_018)
 
   const onPrevious = () => {
     setCurrentLevel((prevLevel) => {
@@ -40,9 +35,9 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
 
   const onNext = () => {
     setCurrentLevel((prevLevel) => {
-      const isAboveMinLevel = prevLevel === maxLevel
+      const isAboveMaxLevel = prevLevel === maxLevel
 
-      if (isAboveMinLevel) {
+      if (isAboveMaxLevel) {
         return prevLevel
       }
 
@@ -56,16 +51,22 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
   console.log('currentLevel?:', currentLevel)
   console.log('maxLevel?:', maxLevel)
 
+  // const levels = Object.values(ELevel).filter(
+  //   (value) => typeof value === 'number'
+  // ) as ELevel[]
+
   return (
     <>
-      {/* Levels */}
+      {/* *** Levels *** */}
+
+      {/* Intro */}
 
       {currentLevel === ELevel.LEVEL_000 && (
-        <Level000 myLevel={ELevel.LEVEL_000} onNext={onNext} />
+        <FirstLevel myLevel={ELevel.LEVEL_000} onNext={onNext} />
       )}
 
       {currentLevel === ELevel.LEVEL_001 && (
-        <Level001
+        <MidLevel
           myLevel={ELevel.LEVEL_001}
           onPrevious={onPrevious}
           onNext={onNext}
@@ -73,26 +74,28 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
       )}
 
       {currentLevel === ELevel.LEVEL_002 && (
-        <Level002
+        <MidLevel
           myLevel={ELevel.LEVEL_002}
           onPrevious={onPrevious}
           onNext={onNext}
         />
       )}
       {currentLevel === ELevel.LEVEL_003 && (
-        <Level003
+        <MidLevel
           myLevel={ELevel.LEVEL_003}
           onPrevious={onPrevious}
           onNext={onNext}
         />
       )}
       {currentLevel === ELevel.LEVEL_004 && (
-        <Level004
+        <MidLevel
           myLevel={ELevel.LEVEL_004}
           onPrevious={onPrevious}
           onNext={onNext}
         />
       )}
+
+      {/* Addition */}
 
       {/* Level005 - In Game */}
 
@@ -135,15 +138,31 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
           />
         )}
 
+      {/* Mitro */}
+
       {currentLevel === ELevel.LEVEL_011 && (
-        <Level011
+        <MidLevel
           myLevel={ELevel.LEVEL_011}
           onPrevious={onPrevious}
           onNext={onNext}
         />
       )}
 
+      {/* Subtraction */}
+
       {/* {operation === EOperationType.SUBTRACTION && <p>TODO: Subtraction</p>} */}
+
+      {/* Level012 - In Game */}
+
+      {/* ... */}
+
+      {/* Level017 - In Game */}
+
+      {/* Outro */}
+
+      {/* {currentLevel === ELevel.LEVEL_018 && (
+        <LastLevel myLevel={ELevel.LEVEL_018} onPrevious={onPrevious} />
+      )} */}
     </>
   )
 }

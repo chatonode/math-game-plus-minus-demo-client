@@ -10,13 +10,15 @@ import classes from './Levels.module.css'
 import { TFirstLevelProps } from '../Level'
 
 const FirstLevel = ({ myLevel, onNext }: TFirstLevelProps) => {
+  const overlayImageSrc = `/assets/images/levels/level-${myLevel
+    .toString()
+    .padStart(3, '0')}.png`
+  const overlayImageAlt = `level-${myLevel}`
+
   return (
     <>
       <Backdrop>
-        {/* <OverlayImage
-          // imagePath={`level-${myLevel.toString().padStart(3, '0')}`}
-          // level={myLevel}
-        > */}
+        <OverlayImage imageSrc={overlayImageSrc} imageAlt={overlayImageAlt}>
           <div className={classes['arrow-container']}>
             <button disabled={true}>
               <Image
@@ -37,7 +39,7 @@ const FirstLevel = ({ myLevel, onNext }: TFirstLevelProps) => {
               />
             </button>
           </div>
-        {/* </OverlayImage> */}
+        </OverlayImage>
       </Backdrop>
     </>
   )

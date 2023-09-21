@@ -185,6 +185,11 @@ const Addition = (props: TAdditionProps) => {
   }
 
   const totalChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // Early return
+    if (event.target.value === '') {
+      return
+    }
+
     const totalInputValue = parseInt(event.target.value.trim())
 
     dispatch({
@@ -277,6 +282,7 @@ const Addition = (props: TAdditionProps) => {
               }
               // TODO: Check Condition
               hasError={
+                state.second_part.current_total !== 0 &&
                 state.second_part.current_total !==
                   props.question.params.expected_result &&
                 state.second_part.current_total !==

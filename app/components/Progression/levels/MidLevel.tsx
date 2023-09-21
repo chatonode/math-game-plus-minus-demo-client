@@ -10,12 +10,15 @@ import classes from './Levels.module.css'
 import { TLevelProps } from '../Level'
 
 const MidLevel = ({ myLevel, onPrevious, onNext }: TLevelProps) => {
-console.log('myLevel', myLevel)
+  const overlayImageSrc = `/assets/images/levels/level-${myLevel
+    .toString()
+    .padStart(3, '0')}.png`
+  const overlayImageAlt = `level-${myLevel}`
 
   return (
     <>
       <Backdrop>
-        {/* <OverlayImage> */}
+        <OverlayImage imageSrc={overlayImageSrc} imageAlt={overlayImageAlt}>
           <div className={classes['arrow-container']}>
             <button onClick={onPrevious}>
               <Image
@@ -36,7 +39,7 @@ console.log('myLevel', myLevel)
               />
             </button>
           </div>
-        {/* </OverlayImage> */}
+        </OverlayImage>
       </Backdrop>
     </>
   )

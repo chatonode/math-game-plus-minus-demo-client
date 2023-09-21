@@ -33,12 +33,12 @@ const ActiveBoxList = (props: TActiveBoxList) => {
 
       return (
         <div
+          key={`${numberValue}-${boxType}`}
           className={
             boxDigit <= 2 ? classes['first-row'] : classes['second-row']
           }
         >
           <Box
-            key={`${numberValue}-${boxType}`}
             box={{
               id: `${numberValue}-${boxType}`,
               score: boxType,
