@@ -14,6 +14,7 @@ type TBox = {
   score: EBoxScore
   isActiveBox: boolean
   onAdd?: (type: EBoxScore) => void
+  onDelete?: (type: EBoxScore) => void
   clicksLeft?: number
   disabled?: boolean
 }
@@ -78,6 +79,10 @@ function Box<T extends TBox>(props: TBoxProps<T>) {
 
     if (props.box.onAdd) {
       props.box.onAdd(props.box.score)
+    }
+
+    if (props.box.onDelete) {
+      props.box.onDelete(props.box.score)
     }
   }
 

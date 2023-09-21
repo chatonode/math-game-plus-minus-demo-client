@@ -1,0 +1,34 @@
+.bar {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.leftbar {
+  align-items: center;
+  justify-content: center;
+}
+
+.locked {
+  filter: blur(3px);
+}
+
+.rightbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

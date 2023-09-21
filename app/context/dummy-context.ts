@@ -21,7 +21,7 @@ export type TQuestionData = {
     params: TQuestionParams
 }
 
-const produceQuestions = (params: Pick<TQuestionParams, "first_number" | "number_to_operate">[]) => {
+const produceQuestions = (params: Pick<TQuestionParams, "first_number" | "number_to_operate" | "operation">[]) => {
     const producedQuestions: TQuestionData[] = params.map((param) => {
         const producedQuestion: TQuestionData = {
             id: uuidv4(), //Math.random().toString(),
@@ -31,7 +31,7 @@ const produceQuestions = (params: Pick<TQuestionParams, "first_number" | "number
             second_part: 'Tebrikler! Kutuları depoya başarıyla yerleştirdin. Şimdi deponda kaç kutu olduğunu yazarak stok müdürüne gönderir misin?',
             success_message: 'Tekrar Tebrikler! Depodaki kutular emin ellerde!',
             params: {
-                operation: EOperationType.ADDITION,
+                operation: param.operation,
                 first_number: param.first_number,
                 number_to_operate: param.number_to_operate,
                 expected_result: param.first_number + param.number_to_operate
@@ -51,18 +51,39 @@ const DUMMY_QUESTIONS = produceQuestions(
         //     first_number: 7819,
         //     number_to_operate: 219,
         // },
-        // FIRST QUESTION
-        {
+
+
+        // Addition
+
+        {   // FIRST QUESTION
             first_number: 8675,
             number_to_operate: 46945,
+            operation: EOperationType.ADDITION
         },
         {
             first_number: 91089,
             number_to_operate: 5121,
+            operation: EOperationType.ADDITION
         },
         {
             first_number: 54782,
             number_to_operate: 6273,
+            operation: EOperationType.ADDITION
+        },
+        {   // FIRST QUESTION
+            first_number: 28514,
+            number_to_operate: 16247,
+            operation: EOperationType.SUBTRACTION
+        },
+        {
+            first_number: 91089,
+            number_to_operate: 5121,
+            operation: EOperationType.SUBTRACTION
+        },
+        {
+            first_number: 54782,
+            number_to_operate: 62735,
+            operation: EOperationType.SUBTRACTION
         },
     ]
 )

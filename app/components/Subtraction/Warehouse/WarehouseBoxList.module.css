@@ -1,0 +1,8 @@
+.warehouse-container {
+  height: 450px;
+  height: 454px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  margin-top: 85px;
+}
