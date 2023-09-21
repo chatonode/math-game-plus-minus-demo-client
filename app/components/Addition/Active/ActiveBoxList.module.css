@@ -27,9 +27,15 @@
 .top .active-boxes .first-row span {
   position: relative;
   top: -31px;
+
+  font-family: inherit;
+  color: white;
 }
 
 .top .active-boxes .second-row span {
   position: relative;
   top: 31px;
+
+  font-family: inherit;
+  color: white;
 }

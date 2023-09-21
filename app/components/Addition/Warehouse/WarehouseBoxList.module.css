@@ -5,4 +5,6 @@
   flex-direction: row-reverse;
   justify-content: space-evenly;
   margin-top: 85px;
+  
+  gap: 10px;
 }
