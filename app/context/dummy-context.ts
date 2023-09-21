@@ -21,20 +21,53 @@ export type TQuestionData = {
     params: TQuestionParams
 }
 
+const addNumber = (num1: number, num2: number) => {
+    return num1 + num2
+}
+
+const subtractNumber = (num1: number, num2: number) => {
+    return num1 - num2
+}
+
 const produceQuestions = (params: Pick<TQuestionParams, "first_number" | "number_to_operate" | "operation">[]) => {
     const producedQuestions: TQuestionData[] = params.map((param) => {
+        let expectedResult = 0
+        let questionMessages: Pick<TQuestionData, "first_part" | "second_part" | "success_message"> = {
+            first_part: '', // Defaults
+            second_part: '',    // to
+            success_message: '', // empty string
+        }
+
+        if (param.operation === EOperationType.ADDITION) {
+            expectedResult = addNumber(param.first_number, param.number_to_operate)
+
+            questionMessages.first_part = `Deponda ${param.first_number} adet kutun var. Bugün ${param.number_to_operate} kutu daha sipariş geldi. Bu kutuları depona eksiksizce yerleştirir misin?`
+            questionMessages.second_part = 'Tebrikler! Kutuları depoya başarıyla yerleştirdin. Şimdi deponda kaç kutu olduğunu yazarak stok müdürüne bildirir misin?'
+            questionMessages.success_message = 'Tekrar Tebrikler! Depodaki kutular emin ellerde!'
+        }
+
+        if (param.operation === EOperationType.SUBTRACTION) {
+            expectedResult = subtractNumber(param.first_number, param.number_to_operate)
+
+            questionMessages.first_part = `Deponda ${param.first_number} adet kutun var. Bugün bu kutuların ${param.number_to_operate} kadarını şehir dışında göndermemiz gerekiyor. Bu kutuları tek tek teslimat bölgesine yerleştirir misin?`
+            questionMessages.second_part = 'Tebrikler! Kutuları teslimat bölgesine başarıyla yerleştirdin. Şimdi depoda kaç kutu kaldığını yazarak stok müdürüne bildirir misin?'
+            questionMessages.success_message = 'Tekrar Tebrikler! Depodaki kutular emin ellerde!'
+        }
+
+
+
+
         const producedQuestion: TQuestionData = {
-            id: uuidv4(), //Math.random().toString(),
+            id: uuidv4(),
             title: 'Depodaki Kutulara El At!',
-            // first_part: 'Deponda <span>7819</span> adet kutun var. Bugün <span>219</span> kutu daha sipariş geldi. Bu kutuları depona eksiksizce yerleştirir misin?',
-            first_part: `Deponda ${param.first_number} adet kutun var. Bugün ${param.number_to_operate} kutu daha sipariş geldi. Bu kutuları depona eksiksizce yerleştirir misin?`,
-            second_part: 'Tebrikler! Kutuları depoya başarıyla yerleştirdin. Şimdi deponda kaç kutu olduğunu yazarak stok müdürüne gönderir misin?',
-            success_message: 'Tekrar Tebrikler! Depodaki kutular emin ellerde!',
+            first_part: questionMessages.first_part,
+            second_part: questionMessages.second_part,
+            success_message: questionMessages.success_message,
             params: {
                 operation: param.operation,
                 first_number: param.first_number,
                 number_to_operate: param.number_to_operate,
-                expected_result: param.first_number + param.number_to_operate
+                expected_result: expectedResult // Default: 0 
 
             }
         }
@@ -47,12 +80,6 @@ const produceQuestions = (params: Pick<TQuestionParams, "first_number" | "number
 
 const DUMMY_QUESTIONS = produceQuestions(
     [
-        // {
-        //     first_number: 7819,
-        //     number_to_operate: 219,
-        // },
-
-
         // Addition
 
         {   // FIRST QUESTION
@@ -70,7 +97,9 @@ const DUMMY_QUESTIONS = produceQuestions(
             number_to_operate: 6273,
             operation: EOperationType.ADDITION
         },
-        {   // FIRST QUESTION
+
+        // Subtraction
+        {
             first_number: 28514,
             number_to_operate: 16247,
             operation: EOperationType.SUBTRACTION

@@ -43,7 +43,7 @@ const BoxColumn = (props: TBoxColumnProps) => {
                   score: props.boxScore,
                   isActiveBox: true,
                   onDelete: props.onDelete,
-                  clicksLeft: numberValue,
+                  clicksLeft: 1,  // TODO: Must be 1 for here??
                 }}
               />
             )
