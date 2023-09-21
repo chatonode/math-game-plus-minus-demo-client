@@ -22,6 +22,20 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/components/Progression/OverlayImage.tsx", "app/components/Addition/Addition-old.tsx.old", "app/components/Progression/ProgressionDisplayer.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/components/Progression/OverlayImage.tsx",
+    "app/components/Addition/Addition-old.tsx.old",
+    "app/components/Progression/ProgressionDisplayer.tsx",
+    "app/components/Progression/levels/archived/Level000.tsx.old",
+    "app/components/Progression/levels/archived/Level001.tsx.old",
+    "app/components/Progression/levels/archived/Level002.tsx.old",
+    "app/components/Progression/levels/archived/Level003.tsx.old",
+    "app/components/Progression/levels/archived/Level004.tsx.old",
+    "app/components/Progression/levels/archived/Level011.tsx.old"
+  ],
   "exclude": ["node_modules"]
 }

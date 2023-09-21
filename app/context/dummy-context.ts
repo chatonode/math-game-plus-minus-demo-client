@@ -49,9 +49,9 @@ const produceQuestions = (params: Pick<TQuestionParams, "first_number" | "number
         if (param.operation === EOperationType.SUBTRACTION) {
             expectedResult = subtractNumber(param.first_number, param.number_to_operate)
 
-            questionMessages.first_part = `Deponda ${param.first_number} adet kutun var. Bugün bu kutuların ${param.number_to_operate} kadarını şehir dışında göndermemiz gerekiyor. Bu kutuları tek tek teslimat bölgesine yerleştirir misin?`
-            questionMessages.second_part = 'Tebrikler! Kutuları teslimat bölgesine başarıyla yerleştirdin. Şimdi depoda kaç kutu kaldığını yazarak stok müdürüne bildirir misin?'
-            questionMessages.success_message = 'Tekrar Tebrikler! Depodaki kutular emin ellerde!'
+            questionMessages.first_part = `Deponda ${param.first_number} adet kutun var. Bugün bu kutuların ${param.number_to_operate} kadarını şehir dışındaki hangara göndermemiz gerekiyor. Bu kutuları tek tek teslimat bölgesine taşır mısın?`
+            questionMessages.second_part = 'Tebrikler! Kutuları teslimat bölgesine başarıyla taşıdın. Şimdi depoda kaç kutu kaldığını yazarak stok müdürüne bildirir misin?'
+            questionMessages.success_message = 'Tekrar Tebrikler! Kutuları hangara teslim edilmek üzere yola çıktı!'
         }
 
 
