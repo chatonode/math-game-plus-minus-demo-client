@@ -1,8 +1,8 @@
 import classes from './WarehouseBoxList.module.css'
 
-import BoxColumn from '../UI/InGame/BoxColumn'
+import BoxColumn from './BoxColumn'
 
-import { EBoxScore } from '../UI/InGame/Box'
+import { EBoxScore } from '../../UI/InGame/Box'
 
 type TWarehouseBoxListProps = React.PropsWithChildren & {
   boxColumns: number[][]

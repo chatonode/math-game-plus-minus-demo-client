@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { convertFromNumTo1DBoxDigits } from '@/app/_helpers/BoxHelper'
-import Box, { EBoxScore } from '../UI/InGame/Box'
+import Box, { EBoxScore } from '../../UI/InGame/Box'
 
 import classes from './ActiveBoxList.module.css'
 

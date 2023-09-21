@@ -24,12 +24,12 @@
   margin-top: 38px;
 }
 
-.first-row span {
+.top .active-boxes .first-row span {
   position: relative;
   top: -31px;
 }
 
-.second-row span {
+.top .active-boxes .second-row span {
   position: relative;
   top: 31px;
 }

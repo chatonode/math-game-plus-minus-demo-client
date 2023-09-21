@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Box, { EBoxScore } from './Box'
+import Box, { EBoxScore } from '../../UI/InGame/Box'
 import classes from './BoxColumn.module.css'
 
 import columnImage from '@/public/assets/images/ColumnImage.png'

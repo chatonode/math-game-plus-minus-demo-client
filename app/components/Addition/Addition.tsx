@@ -4,7 +4,7 @@ import { useReducer, useCallback, useEffect } from 'react'
 
 import additionBackgroundImage from '@/public/assets/images/UI_Bg.jpg'
 
-import WarehouseBoxList from './WarehouseBoxList'
+import WarehouseBoxList from './Warehouse/WarehouseBoxList'
 import { EBoxScore } from '../UI/InGame/Box'
 import Dialog from '../UI/InGame/Dialog'
 import InputContainer, { EInputType } from '../UI/InGame/InputContainer'
@@ -17,7 +17,7 @@ import {
 } from '@/app/_helpers/BoxHelper'
 
 import { TQuestionData, EOperationType } from '@/app/context/dummy-context'
-import ActiveBoxList from './ActiveBoxList'
+import ActiveBoxList from './Active/ActiveBoxList'
 
 type TAdditionState = {
   first_part: {
