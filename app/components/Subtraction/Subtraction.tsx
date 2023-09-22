@@ -4,7 +4,8 @@ import { useReducer, useCallback, useEffect } from 'react'
 
 import subtractionBackgroundImage from '@/public/assets/images/UI_Bg.jpg'
 
-import WarehouseBoxList from './Warehouse/WarehouseBoxList'
+import ActiveBoxList from './Active/ActiveBoxList'
+import BoxList from '../UI/InGame/Warehouse/BoxList'
 import { EBoxScore } from '../UI/InGame/Box'
 import Dialog from '../UI/InGame/Dialog'
 import InputContainer, { EInputType } from '../UI/InGame/InputContainer'
@@ -247,10 +248,7 @@ const Subtraction = (props: TSubtractionProps) => {
             state.first_part.finished ? ' ' + classes.locked : ''
           }`}
         >
-          <WarehouseBoxList
-            boxColumns={state.first_part.current_box_status}
-            onDelete={removeBoxHandler}
-          />
+          <BoxList boxColumns={state.first_part.current_box_status} />
         </div>
 
         <div
@@ -259,16 +257,16 @@ const Subtraction = (props: TSubtractionProps) => {
           }`}
         >
           {/* TODO: Top-Right Panel */}
-          {/* <ActiveBoxList
+          <ActiveBoxList
             currentRemaining={
               props.question.params.expected_result -
               state.first_part.current_total
             }
             initialRemaining={props.question.params.number_to_operate}
-            onAdd={addBoxHandler}
+            onRemove={removeBoxHandler}
             onReset={resetQuestionHandler}
             disabled={state.first_part.finished === true ? true : false}
-          /> */}
+          />
 
           <>
             {!state.second_part.finished && !state.first_part.finished && (

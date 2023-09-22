@@ -1,0 +1,41 @@
+.top {
+  height: 333px;
+  width: 400px;
+}
+
+.top .reset {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.top .reset button {
+  width: 80px;
+  height: 65px;
+}
+
+.top .active-boxes {
+  display: grid;
+  width: 157px;
+  height: 100px;
+  grid-template-rows: repeat(2, 41px);
+  grid-template-columns: repeat(3, 41px);
+  grid-gap: 16.67px;
+  margin-left: 140.5px;
+  margin-top: 38px;
+}
+
+.top .active-boxes .first-row span {
+  position: relative;
+  top: -31px;
+
+  font-family: inherit;
+  color: white;
+}
+
+.top .active-boxes .second-row span {
+  position: relative;
+  top: 31px;
+
+  font-family: inherit;
+  color: white;
+}

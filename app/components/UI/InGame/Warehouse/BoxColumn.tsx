@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Box, { EBoxScore } from '../../UI/InGame/Box'
+import Box, { EBoxScore } from '../Box'
 import classes from './BoxColumn.module.css'
 
 import columnImage from '@/public/assets/images/ColumnImage.png'
@@ -9,7 +9,6 @@ type TBoxColumnProps = React.PropsWithChildren & {
   boxList: number[]
   boxScore: EBoxScore
   id: string
-  onDelete: (type: EBoxScore) => void
 }
 
 const BoxColumn = (props: TBoxColumnProps) => {
@@ -41,9 +40,7 @@ const BoxColumn = (props: TBoxColumnProps) => {
                 box={{
                   id: `${props.id}-${boxKey}`,
                   score: props.boxScore,
-                  isActiveBox: true,
-                  onDelete: props.onDelete,
-                  clicksLeft: 1,  // TODO: Must be 1 for here??
+                  isActiveBox: false,
                 }}
               />
             )

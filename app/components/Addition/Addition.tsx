@@ -4,10 +4,12 @@ import { useReducer, useCallback, useEffect } from 'react'
 
 import additionBackgroundImage from '@/public/assets/images/UI_Bg.jpg'
 
-import WarehouseBoxList from './Warehouse/WarehouseBoxList'
+import ActiveBoxList from './Active/ActiveBoxList'
+import BoxList from '../UI/InGame/Warehouse/BoxList'
 import { EBoxScore } from '../UI/InGame/Box'
 import Dialog from '../UI/InGame/Dialog'
 import InputContainer, { EInputType } from '../UI/InGame/InputContainer'
+
 
 import classes from './Addition.module.css'
 
@@ -17,7 +19,6 @@ import {
 } from '@/app/_helpers/BoxHelper'
 
 import { TQuestionData, EOperationType } from '@/app/context/dummy-context'
-import ActiveBoxList from './Active/ActiveBoxList'
 
 type TAdditionState = {
   first_part: {
@@ -241,7 +242,7 @@ const Addition = (props: TAdditionProps) => {
             state.first_part.finished ? ' ' + classes.locked : ''
           }`}
         >
-          <WarehouseBoxList boxColumns={state.first_part.current_box_status} />
+          <BoxList boxColumns={state.first_part.current_box_status} />
         </div>
 
         <div

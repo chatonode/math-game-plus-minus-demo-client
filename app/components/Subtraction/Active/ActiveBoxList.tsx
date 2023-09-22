@@ -1,15 +1,15 @@
 import React from 'react'
 
 import { convertFromNumTo1DBoxDigits } from '@/app/_helpers/BoxHelper'
-import { EBoxScore } from '../../UI/InGame/Box'
-import AddBox from './AddBox'
+import RemoveBox from './RemoveBox'
+import { TBox, EBoxScore } from '../../UI/InGame/Box'
 
 import classes from './ActiveBoxList.module.css'
 
 type TActiveBoxList = React.PropsWithChildren & {
   initialRemaining: number
   currentRemaining: number
-  onAdd: (type: EBoxScore) => void
+  onRemove: (type: EBoxScore) => void
   onReset: () => void
   disabled: boolean
 }
@@ -39,13 +39,14 @@ const ActiveBoxList = (props: TActiveBoxList) => {
             boxDigit <= 2 ? classes['first-row'] : classes['second-row']
           }
         >
-          <AddBox
+          <RemoveBox
             box={{
               id: `${numberValue}-${boxType}`,
               score: boxType,
-
-              onAdd: props.onAdd,
-              clicksLeft: numberValue,
+              onRemove: props.onRemove,
+              clicksCount: 10 - numberValue,
+              // clicksMax: 10,
+              clicksMax: 10,
             }}
           />
         </div>

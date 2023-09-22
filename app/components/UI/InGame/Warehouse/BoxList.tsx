@@ -1,14 +1,14 @@
-import classes from './WarehouseBoxList.module.css'
+import classes from './BoxList.module.css'
 
 import BoxColumn from './BoxColumn'
 
-import { EBoxScore } from '../../UI/InGame/Box'
+import { EBoxScore } from '../Box'
 
-type TWarehouseBoxListProps = React.PropsWithChildren & {
+type TBoxListProps = React.PropsWithChildren & {
   boxColumns: number[][]
 }
 
-const WarehouseBoxList = (props: TWarehouseBoxListProps) => {
+const BoxList = (props: TBoxListProps) => {
   
   return (
     <div className={classes['warehouse-container']}>
@@ -29,4 +29,4 @@ const WarehouseBoxList = (props: TWarehouseBoxListProps) => {
   )
 }
 
-export default WarehouseBoxList
+export default BoxList
