@@ -17,7 +17,7 @@ type TProgressionDisplayerProps = React.PropsWithChildren & {
 
 const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
   const [minLevel] = useState<ELevel>(ELevel.LEVEL_000)
-  const [currentLevel, setCurrentLevel] = useState<ELevel>(ELevel.LEVEL_011) // Default: LEVEL_000
+  const [currentLevel, setCurrentLevel] = useState<ELevel>(ELevel.LEVEL_000) // Default: LEVEL_000
   const [maxLevel] = useState<ELevel>(ELevel.LEVEL_018)
 
   const onPrevious = () => {
