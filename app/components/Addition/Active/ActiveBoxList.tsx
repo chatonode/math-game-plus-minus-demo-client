@@ -4,6 +4,8 @@ import { convertFromNumTo1DBoxDigits } from '@/app/_helpers/BoxHelper'
 import { EBoxScore } from '../../UI/InGame/Box'
 import AddBox from './AddBox'
 
+import restartButton from '@/public/assets/images/Restart_Btn.png'
+
 import classes from './ActiveBoxList.module.css'
 
 type TActiveBoxList = React.PropsWithChildren & {
@@ -56,7 +58,9 @@ const ActiveBoxList = (props: TActiveBoxList) => {
   return (
     <div className={classes.top}>
       <div className={classes.reset}>
-        <button onClick={props.onReset}>Başa Dön</button>
+        <button style={{
+          backgroundImage: `url(${restartButton.src})`
+        }} onClick={props.onReset} ></button>
       </div>
       <div className={classes['active-boxes']}>{generatedActiveBoxList}</div>
     </div>

@@ -6,11 +6,17 @@
 .top .reset {
   display: flex;
   justify-content: flex-end;
+  height: 65px;
+  align-items: center;
 }
 
 .top .reset button {
-  width: 80px;
-  height: 65px;
+  width: 65px;
+  height: 50px;
+  border: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: unset;
 }
 
 .top .active-boxes {
