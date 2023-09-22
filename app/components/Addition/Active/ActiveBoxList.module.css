@@ -3,22 +3,6 @@
   width: 400px;
 }
 
-.top .reset {
-  display: flex;
-  justify-content: flex-end;
-  height: 65px;
-  align-items: center;
-}
-
-.top .reset button {
-  width: 65px;
-  height: 50px;
-  border: 0;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: unset;
-}
-
 .top .active-boxes {
   display: grid;
   width: 157px;

@@ -183,13 +183,18 @@ const Subtraction = (props: TSubtractionProps) => {
   })
 
   const resetQuestionHandler = useCallback(() => {
+    if (state.first_part.current_total === props.question.params.first_number) {
+      // early return during Initial State
+      return
+    }
+
     dispatch({
       type: ESubtractionActionType.RESET,
       payload: { initial_box_status: initialBoxStatus },
     })
 
     // props.onReset()
-  }, [])
+  }, [state.first_part.current_total])
 
   const removeBoxHandler = (type: EBoxScore) => {
     dispatch({

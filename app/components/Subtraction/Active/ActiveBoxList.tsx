@@ -2,7 +2,8 @@ import React from 'react'
 
 import { convertFromNumTo1DBoxDigits } from '@/app/_helpers/BoxHelper'
 import RemoveBox from './RemoveBox'
-import { TBox, EBoxScore } from '../../UI/InGame/Box'
+import { EBoxScore } from '../../UI/InGame/Box'
+import ResetButton from '../../UI/InGame/ResetButton'
 
 import classes from './ActiveBoxList.module.css'
 
@@ -73,9 +74,7 @@ const ActiveBoxList = (props: TActiveBoxList) => {
 
   return (
     <div className={classes.top}>
-      <div className={classes.reset}>
-        <button onClick={props.onReset}>Başa Dön</button>
-      </div>
+      <ResetButton onReset={props.onReset} />
       <div className={classes['active-boxes']}>{generatedActiveBoxList}</div>
     </div>
   )

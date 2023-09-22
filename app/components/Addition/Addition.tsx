@@ -10,7 +10,6 @@ import { EBoxScore } from '../UI/InGame/Box'
 import Dialog from '../UI/InGame/Dialog'
 import InputContainer, { EInputType } from '../UI/InGame/InputContainer'
 
-
 import classes from './Addition.module.css'
 
 import {
@@ -99,7 +98,7 @@ const additionReducer = (
         second_part: {
           current_total: 0,
           finished: false,
-        }
+        },
       }
     case EAdditionActionType.SUCCESS:
       return {
@@ -177,13 +176,19 @@ const Addition = (props: TAdditionProps) => {
   })
 
   const resetQuestionHandler = useCallback(() => {
+    if (state.first_part.current_total === props.question.params.first_number) {
+      // early return during Initial State
+      return
+    }
+
+
     dispatch({
       type: EAdditionActionType.RESET,
       payload: { initial_box_status: initialBoxStatus },
     })
 
     // props.onReset()
-  }, [])
+  }, [state.first_part.current_total])
 
   const addBoxHandler = (type: EBoxScore) => {
     dispatch({
