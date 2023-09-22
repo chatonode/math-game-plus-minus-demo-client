@@ -48,10 +48,11 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
     })
   }
 
-  console.log('minLevel?:', minLevel)
-  console.log('currentLevel?:', currentLevel)
-  console.log('maxLevel?:', maxLevel)
+  // console.log('minLevel?:', minLevel)
+  // console.log('currentLevel?:', currentLevel)
+  // console.log('maxLevel?:', maxLevel)
 
+  // LinkedList with it later
   // const levels = Object.values(ELevel).filter(
   //   (value) => typeof value === 'number'
   // ) as ELevel[]
@@ -198,9 +199,9 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
 
       {/* Outro */}
 
-      {/* {currentLevel === ELevel.LEVEL_012 && (
+      {currentLevel === ELevel.LEVEL_012 && (
         <LastLevel myLevel={ELevel.LEVEL_012} onPrevious={onPrevious} />
-      )} */}
+      )}
     </>
   )
 }

@@ -44,13 +44,21 @@ function RemoveBox<T extends TRemoveBox>(props: TRemoveBoxProps<T>) {
         MozOpacity: props.box.clicksCount === 0 ? 0 : 'inherit',
         opacity: props.box.clicksCount === 0 ? 0 : 'inherit',
       }}
-      onClick={boxClickHandler}
+      onClick={boxClickHandler} // TODO
       disabled={
         props.box.clicksCount === props.box.clicksMax ? true : undefined
       } // TODO: check & log conditions
       id={props.box.id}
     >
-      <span onClick={e => e.preventDefault()}>x{props.box.clicksCount}</span>
+      <span
+        onClick={(e) => e.preventDefault()}
+        style={{
+          MozOpacity: '1',
+          opacity: '1',
+        }}
+      >
+        x{props.box.clicksCount}
+      </span>
     </button>
   )
 }

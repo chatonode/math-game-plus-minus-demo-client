@@ -23,11 +23,11 @@ const ActiveBoxList = (props: TActiveBoxList) => {
   //   props.initialRemaining
   // )
 
-  const generatedMaxList = convertFromNumTo1DBoxDigits(
-    // For 100 >> 219 - (7919 - 7819) = 119
-    props.currentRemaining,
-    props.initialRemaining
-  )
+  // const generatedMaxList = convertFromNumTo1DBoxDigits(
+  //   // For 100 >> 219 - (7919 - 7819) = 119
+  //   props.currentRemaining,
+  //   props.initialRemaining
+  // )
 
   const generatedCountList = convertFromNumTo1DBoxDigits(
     // For 100 >> 219 - (7919 - 7819) = 119
@@ -64,7 +64,7 @@ const ActiveBoxList = (props: TActiveBoxList) => {
               onRemove: props.onRemove,
               clicksCount: numberValue,
               // clicksMax: 10,
-              clicksMax: parseInt(generatedMaxList[boxDigit]),
+              clicksMax: parseInt(Array.from(props.initialRemaining.toString()).reverse()[boxDigit]),
             }}
           />
         </div>
