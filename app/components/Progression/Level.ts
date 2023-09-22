@@ -12,23 +12,17 @@ export enum ELevel {
     LEVEL_005 = 5,
     LEVEL_006 = 6,
     LEVEL_007 = 7,
-    LEVEL_008 = 8,
-    LEVEL_009 = 9,
-    LEVEL_010 = 10,
 
     // Mitro
-    LEVEL_011 = 11,
+    LEVEL_008 = 8,
 
     // Subtraction
-    LEVEL_012 = 12,
-    LEVEL_013 = 13,
-    LEVEL_014 = 14,
-    LEVEL_015 = 15,
-    LEVEL_016 = 16,
-    LEVEL_017 = 17,
+    LEVEL_009 = 9,
+    LEVEL_010 = 10,
+    LEVEL_011 = 11,
 
     // Outro
-    LEVEL_018 = 18,
+    LEVEL_012 = 12,
 }
 
 enum ELevelImageName {
@@ -43,23 +37,17 @@ enum ELevelImageName {
     LEVEL_005 = 'level-005',
     LEVEL_006 = 'level-006',
     LEVEL_007 = 'level-007',
-    LEVEL_008 = 'level-008',
-    LEVEL_009 = 'level-009',
-    LEVEL_010 = 'level-010',
 
     // Mitro
-    LEVEL_011 = 'level-011',
+    LEVEL_008 = 'level-008',
 
     // Subtraction
-    LEVEL_012 = 'level-012',
-    LEVEL_013 = 'level-013',
-    LEVEL_014 = 'level-014',
-    LEVEL_015 = 'level-015',
-    LEVEL_016 = 'level-016',
-    LEVEL_017 = 'level-017',
+    LEVEL_009 = 'level-009',
+    LEVEL_010 = 'level-010',
+    LEVEL_011 = 'level-011',
 
     // Outro
-    LEVEL_018 = 'level-018',
+    LEVEL_012 = 'level-012',
 }
 
 export type TLevelProps = React.PropsWithChildren & {

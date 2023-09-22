@@ -18,7 +18,7 @@ type TProgressionDisplayerProps = React.PropsWithChildren & {
 const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
   const [minLevel] = useState<ELevel>(ELevel.LEVEL_000)
   const [currentLevel, setCurrentLevel] = useState<ELevel>(ELevel.LEVEL_000) // Default: LEVEL_000
-  const [maxLevel] = useState<ELevel>(ELevel.LEVEL_018)
+  const [maxLevel] = useState<ELevel>(ELevel.LEVEL_012)
 
   const onPrevious = () => {
     setCurrentLevel((prevLevel) => {
@@ -101,47 +101,51 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
       {/* Level005 - In Game */}
 
       {props.questions[0].params.operation === EOperationType.ADDITION &&
-        (currentLevel as ELevel) <= ELevel.LEVEL_006 && (
+        (currentLevel as ELevel) <= ELevel.LEVEL_005 && (
           <Addition
             question={props.questions[0]}
             // onFirstPartReset={onPrevious}
-            onFirstPartFinish={onNext}
+            // onFirstPartFinish={onNext}
             // onSecondPartReset={onPrevious}
-            onSecondPartFinish={onNext}
+            // onSecondPartFinish={onNext}
+
+            onFinish={onNext}
           />
         )}
 
       {props.questions[1].params.operation === EOperationType.ADDITION &&
-        ((currentLevel as ELevel) === ELevel.LEVEL_007 ||
-          (currentLevel as ELevel) === ELevel.LEVEL_008) && (
+        (currentLevel as ELevel) === ELevel.LEVEL_006 && (
           <Addition
             question={props.questions[1]}
             // onFirstPartReset={onPrevious}
-            onFirstPartFinish={onNext}
+            // onFirstPartFinish={onNext}
             // onSecondPartReset={onPrevious}
-            onSecondPartFinish={onNext}
+            // onSecondPartFinish={onNext}
+
+            onFinish={onNext}
           />
         )}
 
       {props.questions[2].params.operation === EOperationType.ADDITION &&
-        ((currentLevel as ELevel) === ELevel.LEVEL_009 ||
-          (currentLevel as ELevel) === ELevel.LEVEL_010) && (
+        (currentLevel as ELevel) === ELevel.LEVEL_007 && (
           <Addition
             question={props.questions[2]}
             // onFirstPartReset={onPrevious}
-            onFirstPartFinish={onNext}
+            // onFirstPartFinish={onNext}
             // onSecondPartReset={onPrevious}
-            onSecondPartFinish={onNext}
+            // onSecondPartFinish={onNext}
+
+            onFinish={onNext}
           />
         )}
 
-      {/* Level010 - In Game */}
+      {/* Level008 - In Game */}
 
       {/* Mitro */}
 
-      {currentLevel === ELevel.LEVEL_011 && (
+      {currentLevel === ELevel.LEVEL_008 && (
         <MidLevel
-          myLevel={ELevel.LEVEL_011}
+          myLevel={ELevel.LEVEL_008}
           onPrevious={onPrevious}
           onNext={onNext}
         />
@@ -149,50 +153,53 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
 
       {/* Subtraction */}
 
-      {/* Level012 - In Game */}
+      {/* Level009 - In Game */}
 
       {props.questions[3].params.operation === EOperationType.SUBTRACTION &&
-        ((currentLevel as ELevel) === ELevel.LEVEL_012 ||
-          (currentLevel as ELevel) === ELevel.LEVEL_013) && (
+        (currentLevel as ELevel) === ELevel.LEVEL_009 && (
           <Subtraction
             question={props.questions[3]}
             // onFirstPartReset={onPrevious}
-            onFirstPartFinish={onNext}
+            // onFirstPartFinish={onNext}
             // onSecondPartReset={onPrevious}
-            onSecondPartFinish={onNext}
+            // onSecondPartFinish={onNext}
+
+            onFinish={onNext}
           />
         )}
 
       {props.questions[4].params.operation === EOperationType.SUBTRACTION &&
-        ((currentLevel as ELevel) === ELevel.LEVEL_014 ||
-          (currentLevel as ELevel) === ELevel.LEVEL_015) && (
+        (currentLevel as ELevel) === ELevel.LEVEL_010 && (
           <Subtraction
             question={props.questions[4]}
             // onFirstPartReset={onPrevious}
-            onFirstPartFinish={onNext}
+            // onFirstPartFinish={onNext}
             // onSecondPartReset={onPrevious}
-            onSecondPartFinish={onNext}
+            // onSecondPartFinish={onNext}
+
+            onFinish={onNext}
           />
         )}
 
       {props.questions[5].params.operation === EOperationType.SUBTRACTION &&
-        ((currentLevel as ELevel) === ELevel.LEVEL_016 ||
-          (currentLevel as ELevel) === ELevel.LEVEL_017) && (
+        (currentLevel as ELevel) === ELevel.LEVEL_011 && (
           <Subtraction
             question={props.questions[5]}
             // onFirstPartReset={onPrevious}
-            onFirstPartFinish={onNext}
+            // onFirstPartFinish={onNext}
             // onSecondPartReset={onPrevious}
-            onSecondPartFinish={onNext}
+            // onSecondPartFinish={onNext}
+
+            onFinish={onNext}
           />
         )}
 
-      {/* Level017 - In Game */}
+      {/* Level011 - In Game */}
 
       {/* Outro */}
 
-      {/* {currentLevel === ELevel.LEVEL_018 && (
-        <LastLevel myLevel={ELevel.LEVEL_018} onPrevious={onPrevious} />
+      {/* {currentLevel === ELevel.LEVEL_012 && (
+        <LastLevel myLevel={ELevel.LEVEL_012} onPrevious={onPrevious} />
       )} */}
     </>
   )

@@ -102,6 +102,10 @@ const subtractionReducer = (
           ),
           finished: false,
         },
+        second_part: {
+          current_total: 0,
+          finished: false,
+        },
       }
     case ESubtractionActionType.SUCCESS:
       return {
@@ -153,9 +157,12 @@ const subtractionReducer = (
 type TSubtractionProps = React.PropsWithChildren & {
   question: TQuestionData
   // onFirstPartReset: () => void
-  onFirstPartFinish: () => void
+  // onFirstPartFinish: () => void
   // onSecondPartReset: () => void
-  onSecondPartFinish: () => void
+  // onSecondPartFinish: () => void
+
+  onFinish: () => void
+  // onReset: () => void
 }
 
 const Subtraction = (props: TSubtractionProps) => {
@@ -180,10 +187,11 @@ const Subtraction = (props: TSubtractionProps) => {
       type: ESubtractionActionType.RESET,
       payload: { initial_box_status: initialBoxStatus },
     })
+
+    // props.onReset()
   }, [])
 
   const removeBoxHandler = (type: EBoxScore) => {
-
     dispatch({
       type: ESubtractionActionType.UPDATE,
       payload: {
@@ -217,7 +225,8 @@ const Subtraction = (props: TSubtractionProps) => {
       dispatch({
         type: ESubtractionActionType.COMPLETE,
       })
-      props.onSecondPartFinish()
+      // props.onSecondPartFinish()
+      props.onFinish()
     }
   }
 
@@ -228,7 +237,7 @@ const Subtraction = (props: TSubtractionProps) => {
       dispatch({
         type: ESubtractionActionType.SUCCESS,
       })
-      props.onFirstPartFinish()
+      // props.onFirstPartFinish()
     }
   }, [state.first_part.current_total])
 
@@ -238,7 +247,6 @@ const Subtraction = (props: TSubtractionProps) => {
     'currentRemaining',
     state.first_part.current_total - props.question.params.expected_result
   )
-
 
   return (
     <>
@@ -266,12 +274,13 @@ const Subtraction = (props: TSubtractionProps) => {
           }`}
         >
           {/* TODO: Top-Right Panel */}
-          <ActiveBoxList  // For: 81
-            currentRemaining={    // 200
+          <ActiveBoxList // For: 81
+            currentRemaining={
+              // 200
               state.first_part.current_total -
               props.question.params.expected_result
             }
-            initialRemaining={props.question.params.number_to_operate}  // 281
+            initialRemaining={props.question.params.number_to_operate} // 281
             onRemove={removeBoxHandler}
             onReset={resetQuestionHandler}
             disabled={state.first_part.finished === true ? true : false}

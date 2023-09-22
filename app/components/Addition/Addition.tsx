@@ -96,6 +96,10 @@ const additionReducer = (
           ),
           finished: false,
         },
+        second_part: {
+          current_total: 0,
+          finished: false,
+        }
       }
     case EAdditionActionType.SUCCESS:
       return {
@@ -147,9 +151,12 @@ const additionReducer = (
 type TAdditionProps = React.PropsWithChildren & {
   question: TQuestionData
   // onFirstPartReset: () => void
-  onFirstPartFinish: () => void
+  // onFirstPartFinish: () => void
   // onSecondPartReset: () => void
-  onSecondPartFinish: () => void
+  // onSecondPartFinish: () => void
+
+  onFinish: () => void
+  // onReset: () => void
 }
 
 const Addition = (props: TAdditionProps) => {
@@ -174,6 +181,8 @@ const Addition = (props: TAdditionProps) => {
       type: EAdditionActionType.RESET,
       payload: { initial_box_status: initialBoxStatus },
     })
+
+    // props.onReset()
   }, [])
 
   const addBoxHandler = (type: EBoxScore) => {
@@ -210,7 +219,8 @@ const Addition = (props: TAdditionProps) => {
       dispatch({
         type: EAdditionActionType.COMPLETE,
       })
-      props.onSecondPartFinish()
+      // props.onSecondPartFinish()
+      props.onFinish()
     }
   }
 
@@ -221,7 +231,7 @@ const Addition = (props: TAdditionProps) => {
       dispatch({
         type: EAdditionActionType.SUCCESS,
       })
-      props.onFirstPartFinish()
+      // props.onFirstPartFinish()
     }
   }, [state.first_part.current_total])
 
