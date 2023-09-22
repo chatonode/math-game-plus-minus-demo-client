@@ -30,6 +30,8 @@
 
   font-family: inherit;
   color: white;
+
+  visibility: visible;
 }
 
 .top .active-boxes .second-row span {
@@ -38,4 +40,6 @@
 
   font-family: inherit;
   color: white;
+
+  visibility: visible;
 }

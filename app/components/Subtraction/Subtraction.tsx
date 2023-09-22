@@ -183,6 +183,7 @@ const Subtraction = (props: TSubtractionProps) => {
   }, [])
 
   const removeBoxHandler = (type: EBoxScore) => {
+
     dispatch({
       type: ESubtractionActionType.UPDATE,
       payload: {
@@ -231,6 +232,14 @@ const Subtraction = (props: TSubtractionProps) => {
     }
   }, [state.first_part.current_total])
 
+  console.log('Inside Subtraction:')
+  console.log('initialRemaining', props.question.params.number_to_operate)
+  console.log(
+    'currentRemaining',
+    state.first_part.current_total - props.question.params.expected_result
+  )
+
+
   return (
     <>
       <main
@@ -257,12 +266,12 @@ const Subtraction = (props: TSubtractionProps) => {
           }`}
         >
           {/* TODO: Top-Right Panel */}
-          <ActiveBoxList
-            currentRemaining={
-              props.question.params.expected_result -
-              state.first_part.current_total
+          <ActiveBoxList  // For: 81
+            currentRemaining={    // 200
+              state.first_part.current_total -
+              props.question.params.expected_result
             }
-            initialRemaining={props.question.params.number_to_operate}
+            initialRemaining={props.question.params.number_to_operate}  // 281
             onRemove={removeBoxHandler}
             onReset={resetQuestionHandler}
             disabled={state.first_part.finished === true ? true : false}

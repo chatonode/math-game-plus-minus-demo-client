@@ -8,7 +8,7 @@ import { getBackgroundImage } from '@/app/_helpers/components/box'
 type TRemoveBox = TBox & {
   onRemove: (type: EBoxScore) => void
   clicksCount: number
-  readonly clicksMax: 10
+  clicksMax: number
   // disabled: boolean
 }
 
@@ -25,19 +25,32 @@ function RemoveBox<T extends TRemoveBox>(props: TRemoveBoxProps<T>) {
     }
   }
 
-  console.log('Remove Box clicksLeft:', props.box.id, ' - ', props.box.clicksCount)
+  console.log(
+    'Remove Box clicksLeft:',
+    props.box.id,
+    ' - ',
+    props.box.clicksCount,
+    '  - max: ',
+    props.box.clicksMax
+  )
   return (
     <button
       className={classes.box}
       style={{
         backgroundImage,
-        visibility: props.box.clicksCount === 0 ? 'hidden' : 'visible',
+        // visibility:
+        //   props.box.clicksCount === 0 ? 'hidden' : 'visible',
+        // https://sookocheff.com/post/javascript/the-javascript-click-event-and-hidden-input-elements/
+        MozOpacity: props.box.clicksCount === 0 ? 0 : 'inherit',
+        opacity: props.box.clicksCount === 0 ? 0 : 'inherit',
       }}
       onClick={boxClickHandler}
-      // disabled={props.box.clicksLeft === 0 ? true : undefined} // TODO: check & log conditions
+      disabled={
+        props.box.clicksCount === props.box.clicksMax ? true : undefined
+      } // TODO: check & log conditions
       id={props.box.id}
     >
-      <span>x{props.box.clicksCount}</span>
+      <span onClick={e => e.preventDefault()}>x{props.box.clicksCount}</span>
     </button>
   )
 }
