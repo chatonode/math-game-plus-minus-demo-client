@@ -100,18 +100,18 @@ const DUMMY_QUESTIONS = produceQuestions(
 
         // Subtraction
         {
-            first_number: 28514,
-            number_to_operate: 16247,
+            first_number: 6834,
+            number_to_operate: 281,
             operation: EOperationType.SUBTRACTION
         },
         {
-            first_number: 91089,
-            number_to_operate: 5121,
+            first_number: 45372,
+            number_to_operate: 37359,
             operation: EOperationType.SUBTRACTION
         },
         {
-            first_number: 54782,
-            number_to_operate: 62735,
+            first_number: 77183,
+            number_to_operate: 5824,
             operation: EOperationType.SUBTRACTION
         },
     ]

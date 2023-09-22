@@ -40,7 +40,7 @@ const BoxColumn = (props: TBoxColumnProps) => {
                 box={{
                   id: `${props.id}-${boxKey}`,
                   score: props.boxScore,
-                  isActiveBox: false,
+                  // isActiveBox: false,
                 }}
               />
             )

@@ -37,7 +37,7 @@ function RemoveBox<T extends TRemoveBox>(props: TRemoveBoxProps<T>) {
       // disabled={props.box.clicksLeft === 0 ? true : undefined} // TODO: check & log conditions
       id={props.box.id}
     >
-      <span>x{10 - props.box.clicksCount}</span>
+      <span>x{props.box.clicksCount}</span>
     </button>
   )
 }
