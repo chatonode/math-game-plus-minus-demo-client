@@ -18,6 +18,7 @@ type TRemoveBoxProps<T> = React.PropsWithChildren & {
 
 function RemoveBox<T extends TRemoveBox>(props: TRemoveBoxProps<T>) {
   const backgroundImage = getBackgroundImage(props.box.score)
+  const maxClicksReached = props.box.clicksCount === props.box.clicksMax
 
   const boxClickHandler = () => {
     if (props.box.onRemove) {
@@ -34,32 +35,37 @@ function RemoveBox<T extends TRemoveBox>(props: TRemoveBoxProps<T>) {
     props.box.clicksMax
   )
   return (
-    <button
-      className={classes.box}
-      style={{
-        backgroundImage,
-        // visibility:
-        //   props.box.clicksCount === 0 ? 'hidden' : 'visible',
-        // https://sookocheff.com/post/javascript/the-javascript-click-event-and-hidden-input-elements/
-        MozOpacity: props.box.clicksCount === 0 ? 0 : 'inherit',
-        opacity: props.box.clicksCount === 0 ? 0 : 'inherit',
-      }}
-      onClick={boxClickHandler} // TODO
-      disabled={
-        props.box.clicksCount === props.box.clicksMax ? true : undefined
-      } // TODO: check & log conditions
-      id={props.box.id}
-    >
-      <span
-        onClick={(e) => e.preventDefault()}
+    <>
+      <button
+        className={classes.box}
         style={{
-          MozOpacity: '1',
-          opacity: '1',
+          backgroundImage,
+          // visibility:
+          //   props.box.clicksCount === 0 ? 'hidden' : 'visible',
+          // https://sookocheff.com/post/javascript/the-javascript-click-event-and-hidden-input-elements/
+          // MozOpacity: props.box.clicksCount === 0 ? 0 : 'inherit',
+          // opacity: props.box.clicksCount === 0 ? 0 : 'inherit',
+          // animation: props.box.clicksCount === 0 ? "unset" : 'auto',
         }}
+        onClick={boxClickHandler} // TODO
+        disabled={
+          maxClicksReached ? true : undefined
+        } // TODO: check & log conditions
+        id={props.box.id}
       >
-        x{props.box.clicksCount}
-      </span>
-    </button>
+        <span
+          onClick={(e) => e.preventDefault()}
+          style={
+            {
+              // MozOpacity: '1',
+              // opacity: '1',
+            }
+          }
+        >
+          x{props.box.clicksCount}
+        </span>
+      </button>
+    </>
   )
 }
 

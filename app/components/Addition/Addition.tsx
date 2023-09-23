@@ -33,7 +33,7 @@ type TAdditionState = {
 
 enum EAdditionActionType {
   UPDATE = 'update',
-  SUCCESS = 'success',
+  // SUCCESS = 'success',
   FAILURE = 'failure',
   RESET = 'reset',
   CHANGE_INPUT = 'change-input',
@@ -42,6 +42,7 @@ enum EAdditionActionType {
 
 type TAdditionUpdateActionPayload = {
   selected_box_type: EBoxScore
+  expected_result: number
 }
 
 type TAdditionResetActionPayload = {
@@ -54,7 +55,7 @@ type TAdditionChangeInputActionPayload = {
 
 type TAdditionAction =
   | { type: EAdditionActionType.UPDATE; payload: TAdditionUpdateActionPayload }
-  | { type: EAdditionActionType.SUCCESS }
+  // | { type: EAdditionActionType.SUCCESS }
   | { type: EAdditionActionType.FAILURE }
   | { type: EAdditionActionType.RESET; payload: TAdditionResetActionPayload }
   | {
@@ -76,6 +77,22 @@ const additionReducer = (
       const currentTotalValue =
         prevAdditionState.first_part.current_total + incomingValue
 
+        // SUCCESS CASE
+        if (currentTotalValue === action.payload.expected_result) {
+          return {
+            ...prevAdditionState,
+            first_part: {
+              current_box_status: convertFromNumTo2DBoxDigits(currentTotalValue),
+              current_total: currentTotalValue,
+              finished: true,
+            },
+            second_part: {
+              ...prevAdditionState.second_part,
+            }
+          }
+        }
+
+        // Else
       return {
         ...prevAdditionState,
         first_part: {
@@ -100,14 +117,14 @@ const additionReducer = (
           finished: false,
         },
       }
-    case EAdditionActionType.SUCCESS:
-      return {
-        ...prevAdditionState,
-        first_part: {
-          ...prevAdditionState.first_part,
-          finished: true,
-        },
-      }
+    // case EAdditionActionType.SUCCESS:
+    //   return {
+    //     ...prevAdditionState,
+    //     first_part: {
+    //       ...prevAdditionState.first_part,
+    //       finished: true,
+    //     },
+    //   }
 
     case EAdditionActionType.CHANGE_INPUT:
       return {
@@ -181,7 +198,6 @@ const Addition = (props: TAdditionProps) => {
       return
     }
 
-
     dispatch({
       type: EAdditionActionType.RESET,
       payload: { initial_box_status: initialBoxStatus },
@@ -195,6 +211,7 @@ const Addition = (props: TAdditionProps) => {
       type: EAdditionActionType.UPDATE,
       payload: {
         selected_box_type: type,
+        expected_result: props.question.params.expected_result,
       },
     })
   }
@@ -229,16 +246,18 @@ const Addition = (props: TAdditionProps) => {
     }
   }
 
-  useEffect(() => {
-    const expected = props.question.params.expected_result
-    const actual = state.first_part.current_total
-    if (actual === expected) {
-      dispatch({
-        type: EAdditionActionType.SUCCESS,
-      })
-      // props.onFirstPartFinish()
-    }
-  }, [state.first_part.current_total])
+  // useEffect(() => {
+  //   if (state.first_part.current_total.toString().includes('0')) {
+  //     const delay = setInterval(() => {
+
+  //     }, 1500)
+  //   }
+
+  //   // Teardown
+  //   return () => {
+
+  //   }
+  // }, [state.first_part.current_total])
 
   return (
     <>

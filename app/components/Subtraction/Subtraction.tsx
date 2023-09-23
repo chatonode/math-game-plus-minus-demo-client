@@ -34,7 +34,7 @@ type TSubtractionState = {
 
 enum ESubtractionActionType {
   UPDATE = 'update',
-  SUCCESS = 'success',
+  // SUCCESS = 'success',
   FAILURE = 'failure',
   RESET = 'reset',
   CHANGE_INPUT = 'change-input',
@@ -43,6 +43,7 @@ enum ESubtractionActionType {
 
 type TSubtractionUpdateActionPayload = {
   selected_box_type: EBoxScore
+  expected_result: number
 }
 
 type TSubtractionResetActionPayload = {
@@ -58,7 +59,7 @@ type TSubtractionAction =
       type: ESubtractionActionType.UPDATE
       payload: TSubtractionUpdateActionPayload
     }
-  | { type: ESubtractionActionType.SUCCESS }
+  // | { type: ESubtractionActionType.SUCCESS }
   | { type: ESubtractionActionType.FAILURE }
   | {
       type: ESubtractionActionType.RESET
@@ -83,6 +84,22 @@ const subtractionReducer = (
       const currentTotalValue =
         prevSubtractionState.first_part.current_total - incomingValue
 
+        // SUCCESS CASE
+        if (currentTotalValue === action.payload.expected_result) {
+          return {
+            ...prevSubtractionState,
+            first_part: {
+              current_box_status: convertFromNumTo2DBoxDigits(currentTotalValue),
+              current_total: currentTotalValue,
+              finished: true,
+            },
+            second_part: {
+              ...prevSubtractionState.second_part,
+            }
+          }
+        }
+
+        // Else
       return {
         ...prevSubtractionState,
         first_part: {
@@ -107,14 +124,14 @@ const subtractionReducer = (
           finished: false,
         },
       }
-    case ESubtractionActionType.SUCCESS:
-      return {
-        ...prevSubtractionState,
-        first_part: {
-          ...prevSubtractionState.first_part,
-          finished: true,
-        },
-      }
+    // case ESubtractionActionType.SUCCESS:
+    //   return {
+    //     ...prevSubtractionState,
+    //     first_part: {
+    //       ...prevSubtractionState.first_part,
+    //       finished: true,
+    //     },
+    //   }
 
     case ESubtractionActionType.CHANGE_INPUT:
       return {
@@ -201,6 +218,7 @@ const Subtraction = (props: TSubtractionProps) => {
       type: ESubtractionActionType.UPDATE,
       payload: {
         selected_box_type: type,
+        expected_result: props.question.params.expected_result,
       },
     })
   }
@@ -235,23 +253,25 @@ const Subtraction = (props: TSubtractionProps) => {
     }
   }
 
-  useEffect(() => {
-    const expected = props.question.params.expected_result
-    const actual = state.first_part.current_total
-    if (actual === expected) {
-      dispatch({
-        type: ESubtractionActionType.SUCCESS,
-      })
-      // props.onFirstPartFinish()
-    }
-  }, [state.first_part.current_total])
+  // useEffect(() => {
+  //   const expected = props.question.params.expected_result
+  //   const actual = state.first_part.current_total
+  //   if (actual === expected) {
+  //     dispatch({
+  //       type: ESubtractionActionType.SUCCESS,
+  //     })
+  //     // props.onFirstPartFinish()
+  //   }
+  // }, [state.first_part.current_total])
 
-  console.log('Inside Subtraction:')
-  console.log('initialRemaining', props.question.params.number_to_operate)
-  console.log(
-    'currentRemaining',
-    state.first_part.current_total - props.question.params.expected_result
-  )
+
+
+  // console.log('Inside Subtraction:')
+  // console.log('initialRemaining', props.question.params.number_to_operate)
+  // console.log(
+  //   'currentRemaining',
+  //   state.first_part.current_total - props.question.params.expected_result
+  // )
 
   return (
     <>

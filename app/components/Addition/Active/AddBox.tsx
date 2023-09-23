@@ -17,6 +17,7 @@ type TAddBoxProps<T> = React.PropsWithChildren & {
 
 function AddBox<T extends TAddBox>(props: TAddBoxProps<T>) {
   const backgroundImage = getBackgroundImage(props.box.score)
+  const noClicksLeft = props.box.clicksLeft === 0
 
   const boxClickHandler = () => {
     if (props.box.onAdd) {
@@ -26,18 +27,30 @@ function AddBox<T extends TAddBox>(props: TAddBoxProps<T>) {
 
   // console.log('Active Box:', props.box.id)
   return (
-    <button
-      className={classes.box}
-      style={{
-        backgroundImage,
-        visibility: props.box.clicksLeft === 0 ? 'hidden' : 'visible',
-      }}
-      onClick={boxClickHandler}
-      disabled={props.box.clicksLeft === 0 ? true : undefined} // TODO: check & log conditions
-      id={props.box.id}
-    >
-      <span>x{props.box.clicksLeft}</span>
-    </button>
+    <>
+      <button
+        className={classes.box}
+        style={{
+          backgroundImage,
+          visibility: noClicksLeft ? 'hidden' : 'visible',
+          // opacity: noClicksLeft ? 0 : 1
+          // display: noClicksLeft ? 'none' : 'inherit',
+        }}
+        onClick={boxClickHandler}
+        disabled={noClicksLeft ? true : undefined} // TODO: check & log conditions
+        id={props.box.id}
+      >
+        <span
+          style={
+            {
+              // opacity: 1
+            }
+          }
+        >
+          x{props.box.clicksLeft}
+        </span>
+      </button>
+    </>
   )
 }
 
