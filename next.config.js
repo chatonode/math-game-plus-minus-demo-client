@@ -5,7 +5,7 @@ const nextConfig = {
   // trailingSlash: true,
 
   images: { unoptimized: true },
-  assetPrefix: '/out',   // Activate for SCR build
+  // assetPrefix: '/out',   // Activate for SCR build / Deactivate during pushes
 }
 
 module.exports = nextConfig
