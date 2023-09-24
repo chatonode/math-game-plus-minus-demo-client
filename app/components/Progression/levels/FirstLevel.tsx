@@ -10,10 +10,10 @@ import classes from './Levels.module.css'
 import { TFirstLevelProps } from '../Level'
 
 const FirstLevel = ({ myLevel, onNext }: TFirstLevelProps) => {
-  const overlayImageSrc = `/assets/images/levels/level-${myLevel
-    .toString()
-    .padStart(3, '0')}.png`
-  const overlayImageAlt = `level-${myLevel}`
+  const myLevelStr = myLevel.toString().padStart(3, '0')
+
+  const overlayImageSrc = `assets/images/levels/level-${myLevelStr}.png`
+  const overlayImageAlt = `level-${myLevelStr}`
 
   return (
     <>
@@ -22,7 +22,7 @@ const FirstLevel = ({ myLevel, onNext }: TFirstLevelProps) => {
           <div className={classes['arrow-container']}>
             <button disabled={true}>
               <Image
-                src="/assets/images/levels/arrow-left.png"
+                src="assets/images/levels/arrow-left.png"
                 width={50}
                 height={50}
                 // sizes="(max-width: 768px) 100vw"
@@ -31,7 +31,7 @@ const FirstLevel = ({ myLevel, onNext }: TFirstLevelProps) => {
             </button>
             <button onClick={onNext}>
               <Image
-                src="/assets/images/levels/arrow-right.png"
+                src="assets/images/levels/arrow-right.png"
                 width={50}
                 height={50}
                 // sizes="(max-width: 768px) 100vw"

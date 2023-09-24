@@ -77,22 +77,22 @@ const additionReducer = (
       const currentTotalValue =
         prevAdditionState.first_part.current_total + incomingValue
 
-        // SUCCESS CASE
-        if (currentTotalValue === action.payload.expected_result) {
-          return {
-            ...prevAdditionState,
-            first_part: {
-              current_box_status: convertFromNumTo2DBoxDigits(currentTotalValue),
-              current_total: currentTotalValue,
-              finished: true,
-            },
-            second_part: {
-              ...prevAdditionState.second_part,
-            }
-          }
+      // SUCCESS CASE
+      if (currentTotalValue === action.payload.expected_result) {
+        return {
+          ...prevAdditionState,
+          first_part: {
+            current_box_status: convertFromNumTo2DBoxDigits(currentTotalValue),
+            current_total: currentTotalValue,
+            finished: true,
+          },
+          second_part: {
+            ...prevAdditionState.second_part,
+          },
         }
+      }
 
-        // Else
+      // Else
       return {
         ...prevAdditionState,
         first_part: {
@@ -246,18 +246,27 @@ const Addition = (props: TAdditionProps) => {
     }
   }
 
+
+  // Delay - START
+  // let delay: any
+
+  // const checkTotalHasZeroes = () => {
+  //   delay = setInterval(() => {}, 1500)
+  // }
+
   // useEffect(() => {
   //   if (state.first_part.current_total.toString().includes('0')) {
-  //     const delay = setInterval(() => {
-
-  //     }, 1500)
+  //     console.log('AM I INSIDE INTERVAL?:', state.first_part.current_total.toString())
+  //     checkTotalHasZeroes()
   //   }
 
   //   // Teardown
   //   return () => {
-
+  //     clearInterval(delay)
   //   }
   // }, [state.first_part.current_total])
+
+  // Delay - END
 
   return (
     <>

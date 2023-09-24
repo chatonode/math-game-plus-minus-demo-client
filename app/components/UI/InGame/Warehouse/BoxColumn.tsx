@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+
+import React, { useState} from 'react'
 
 import Box, { EBoxScore } from '../Box'
 import classes from './BoxColumn.module.css'
@@ -8,10 +10,15 @@ import columnImage from '@/public/assets/images/ColumnImage.png'
 type TBoxColumnProps = React.PropsWithChildren & {
   boxList: number[]
   boxScore: EBoxScore
+  numberOfBoxes: number
   id: string
 }
 
 const BoxColumn = (props: TBoxColumnProps) => {
+  // const [isReadyToCarryOne, setIsReadyToCarryOne] = useState<boolean>(false)
+
+  console.log('props.numberOfBoxes:', props.numberOfBoxes)
+
   return (
     <div
       className={classes['column-container']}
@@ -19,6 +26,9 @@ const BoxColumn = (props: TBoxColumnProps) => {
         backgroundImage: `url(${columnImage.src})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'contain',
+
+        // isReadyToCarryOne
+        // animation: props.numberOfBoxes === 9 ? 'animate 1.25s linear infinite' : 'unset'
       }}
     >
       {props.boxList.map((numberOfBoxesInColumn) => {

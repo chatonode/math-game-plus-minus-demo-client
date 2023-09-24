@@ -8,3 +8,7 @@
   
   gap: 10px;
 }
+
+.warehouse-container div[boxno="9"] {
+  background-color:oklch(from red l c h)
+}
