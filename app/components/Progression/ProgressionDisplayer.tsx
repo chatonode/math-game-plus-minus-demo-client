@@ -1,7 +1,8 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
+import Timer, { TTimerScoreBody } from './Timer/Timer'
 import Addition from '../Addition/Addition'
 import Subtraction from '../Subtraction/Subtraction'
 import { ELevel } from './Level'
@@ -48,18 +49,55 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
     })
   }
 
-  // console.log('minLevel?:', minLevel)
-  // console.log('currentLevel?:', currentLevel)
-  // console.log('maxLevel?:', maxLevel)
+  // Timer-related Code
+  const completeProgressionHandler = (endTimeSeconds: number) => {
+    const sendTimeScore = async () => {
+      const contentId = 118
+      const completionTimeSeconds = endTimeSeconds
+      const completionRate = 100
+      const score = completionTimeSeconds / completionRate
+  
+      const timerScoreBody: TTimerScoreBody = {
+        contentId,
+        completionTimeSeconds,
+        completionRate,
+        score,
+      }
+  
+      const response = await fetch(
+        'https://scr-numbers-digits-game-demo-default-rtdb.europe-west1.firebasedatabase.app/scores.json',
+        {
+          method: 'POST',
+          body: JSON.stringify(timerScoreBody),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+  
+      if (!response.ok) {
+        throw new Error('Unable to send time score data to the server!')
+      }
+  
+      const data = await response.json()
+  
+      console.log(data)
+    }
 
-  // LinkedList with it later
-  // const levels = Object.values(ELevel).filter(
-  //   (value) => typeof value === 'number'
-  // ) as ELevel[]
+    sendTimeScore()
+  }
 
   return (
     <>
       {/* *** Levels *** */}
+
+      {/* Parallel Timer */}
+
+      <Timer
+        currentLevel={currentLevel}
+        maxLevel={maxLevel}
+        onComplete={completeProgressionHandler}
+      />
 
       {/* Intro */}
 
