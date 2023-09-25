@@ -17,6 +17,7 @@ type TTimerProps = React.PropsWithChildren & {
   // onComplete: () => void
 
   currentLevel: ELevel
+  midLevel: ELevel
   maxLevel: ELevel
   onComplete: (time: number) => void
 }
@@ -37,6 +38,7 @@ const Timer = (props: TTimerProps) => {
     const intervalId = setInterval(() => {
       if (props.currentLevel < props.maxLevel) {
         setCurrentTimeState((prevTimeState) => {
+          // Increment
           if (!prevTimeState.isPaused) {
             return {
               currentTime: prevTimeState.currentTime + 1,
@@ -45,12 +47,13 @@ const Timer = (props: TTimerProps) => {
           }
 
           return {
-            ...prevTimeState
+            ...prevTimeState,
           }
         })
       }
     }, 1000)
 
+    // Pause
     if (props.currentLevel === props.maxLevel) {
       setCurrentTimeState((prevTimeState) => {
         return {
@@ -59,6 +62,29 @@ const Timer = (props: TTimerProps) => {
         }
       })
       props.onComplete(timeState.currentTime)
+    }
+
+    // Pause
+    if (props.currentLevel === props.midLevel) {
+      setCurrentTimeState((prevTimeState) => {
+        return {
+          currentTime: prevTimeState.currentTime,
+          isPaused: true,
+        }
+      })
+    }
+
+    // Continue
+    if (
+      props.currentLevel !== props.midLevel &&
+      props.currentLevel !== props.maxLevel
+    ) {
+      setCurrentTimeState((prevTimeState) => {
+        return {
+          currentTime: prevTimeState.currentTime,
+          isPaused: false,
+        }
+      })
     }
 
     // Teardown

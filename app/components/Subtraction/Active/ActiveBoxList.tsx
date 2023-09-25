@@ -16,18 +16,6 @@ type TActiveBoxList = React.PropsWithChildren & {
 }
 
 const ActiveBoxList = (props: TActiveBoxList) => {
-  // Non-updated
-  // const generatedList = convertFromNumTo1DBoxDigits(
-  //   // For 100 >> 219 - (7919 - 7819) = 119
-  //   props.currentRemaining,
-  //   props.initialRemaining
-  // )
-
-  // const generatedMaxList = convertFromNumTo1DBoxDigits(
-  //   // For 100 >> 219 - (7919 - 7819) = 119
-  //   props.currentRemaining,
-  //   props.initialRemaining
-  // )
 
   const generatedCountList = convertFromNumTo1DBoxDigits(
     // For 100 >> 219 - (7919 - 7819) = 119
@@ -46,9 +34,9 @@ const ActiveBoxList = (props: TActiveBoxList) => {
       //     return // Early
       //   }
 
-      console.log('Inside ActiveBoxList:')
-      console.log(props.initialRemaining, props.currentRemaining)
-      console.log('numberValue', numberValue)
+      // console.log('Inside ActiveBoxList:')
+      // console.log(props.initialRemaining, props.currentRemaining)
+      // console.log('numberValue', numberValue)
 
       return (
         <div
