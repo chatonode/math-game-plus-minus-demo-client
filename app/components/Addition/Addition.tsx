@@ -246,7 +246,6 @@ const Addition = (props: TAdditionProps) => {
     }
   }
 
-
   // Delay - START
   // let delay: any
 
@@ -324,7 +323,10 @@ const Addition = (props: TAdditionProps) => {
                   ? ''
                   : state.second_part.current_total
               }
-              // TODO: Check Condition
+              isValid={
+                state.second_part.current_total ===
+                props.question.params.expected_result
+              }
               hasError={
                 state.second_part.current_total !== 0 &&
                 state.second_part.current_total !==

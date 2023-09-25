@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect } from 'react'
 
 import classes from './InputContainer.module.css'
 
@@ -9,6 +11,7 @@ export enum EInputType {
 type TInputContainerProps<T> = React.PropsWithChildren & {
   type: EInputType
   currentValue: T | string
+  isValid: boolean
   hasError: boolean
   changeHandler: React.ChangeEventHandler
   submitHandler: React.MouseEventHandler
@@ -25,7 +28,7 @@ function InputContainer<T>(props: TInputContainerProps<T>) {
       <input
         className={`${classes.input}${
           props.hasError ? ' ' + classes.error : ''
-        }`}
+        }${props.isValid ? ' ' + classes.valid : ''}`}
         type={props.type as string}
         value={props.currentValue as string}
         // defaultValue={''}

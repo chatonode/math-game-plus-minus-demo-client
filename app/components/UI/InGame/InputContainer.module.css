@@ -12,12 +12,29 @@
   box-shadow: 0 0 0 transparent;
   /* border: 1px solid #999; */
   outline: 0 none;
-  transition: box-shadow 0.5s;
+  transition: box-shadow 1s;
+
+  /* Input: Border-Radius & Box-Shadow */
+  /* overriding box-shadow transparent */
+  /* border-radius: 5px 5px 10px 10px; */
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  box-shadow: 0 3px 30px 1px white;
+}
+
+.input-container .input.valid {
+  /* Input: Border-Radius & Box-Shadow */
+  /* overriding my box-shadow white */
+  
+  box-shadow: 0 -3px 30px 1px #22bd22;
 }
 
 .input-container .input.error {
   animation: shake 0.2s ease-in-out 0s 2;
   box-shadow: 0 0 0.5em red;
+
+  /* Input: Border-Radius & Box-Shadow */
+  /* overriding box-shadow red */
+  box-shadow: 0 -3px 30px 1px rgb(212, 44, 44);
 }
 
 @keyframes shake {
@@ -39,6 +56,10 @@
   color: white;
   background-color: rgb(32, 158, 32);
   border-color: rgb(15, 105, 15);
+
+  /* Button: Border-Radius & Box-Shadow */
+  border-radius: 1rem 1rem 5rem 5rem;
+  box-shadow: 0 3px 30px 1px white;
 }
 
 .input-container .submit:hover {

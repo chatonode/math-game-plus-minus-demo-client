@@ -84,22 +84,22 @@ const subtractionReducer = (
       const currentTotalValue =
         prevSubtractionState.first_part.current_total - incomingValue
 
-        // SUCCESS CASE
-        if (currentTotalValue === action.payload.expected_result) {
-          return {
-            ...prevSubtractionState,
-            first_part: {
-              current_box_status: convertFromNumTo2DBoxDigits(currentTotalValue),
-              current_total: currentTotalValue,
-              finished: true,
-            },
-            second_part: {
-              ...prevSubtractionState.second_part,
-            }
-          }
+      // SUCCESS CASE
+      if (currentTotalValue === action.payload.expected_result) {
+        return {
+          ...prevSubtractionState,
+          first_part: {
+            current_box_status: convertFromNumTo2DBoxDigits(currentTotalValue),
+            current_total: currentTotalValue,
+            finished: true,
+          },
+          second_part: {
+            ...prevSubtractionState.second_part,
+          },
         }
+      }
 
-        // Else
+      // Else
       return {
         ...prevSubtractionState,
         first_part: {
@@ -264,8 +264,6 @@ const Subtraction = (props: TSubtractionProps) => {
   //   }
   // }, [state.first_part.current_total])
 
-
-
   // console.log('Inside Subtraction:')
   // console.log('initialRemaining', props.question.params.number_to_operate)
   // console.log(
@@ -331,7 +329,10 @@ const Subtraction = (props: TSubtractionProps) => {
                   ? ''
                   : state.second_part.current_total
               }
-              // TODO: Check Condition
+              isValid={
+                state.second_part.current_total ===
+                props.question.params.expected_result
+              }
               hasError={
                 state.second_part.current_total !== 0 &&
                 state.second_part.current_total !==

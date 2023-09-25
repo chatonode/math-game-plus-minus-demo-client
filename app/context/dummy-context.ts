@@ -50,7 +50,7 @@ const produceQuestions = (params: Pick<TQuestionParams, "first_number" | "number
             expectedResult = subtractNumber(param.first_number, param.number_to_operate)
 
             questionMessages.first_part = `Deponda ${param.first_number} adet fazla kutun var. Bugün bu kutuların ${param.number_to_operate} kadarını tek tek teslimat bölgesine taşır mısın?`
-            questionMessages.second_part = 'Tebrikler! Kutuları teslimat bölgesine başarıyla taşıdın. Şimdi depoda kaç kutu kaldığını yazarak stok müdürüne bildirir misin?'
+            questionMessages.second_part = 'Tebrikler! Kutuları teslimat bölgesine başarıyla taşıdın. Şimdi depoda kaç kutu kaldığını yazarak müdüre bildirir misin?'
             questionMessages.success_message = 'Tekrar Tebrikler! Kutuları hangara teslim edilmek üzere yola çıktı!'
         }
 
