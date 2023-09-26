@@ -17,7 +17,7 @@ type TBoxColumnProps = React.PropsWithChildren & {
 const BoxColumn = (props: TBoxColumnProps) => {
   // const [isReadyToCarryOne, setIsReadyToCarryOne] = useState<boolean>(false)
 
-  console.log('props.numberOfBoxes:', props.numberOfBoxes)
+  // console.log('props.numberOfBoxes:', props.numberOfBoxes)
 
   return (
     <div

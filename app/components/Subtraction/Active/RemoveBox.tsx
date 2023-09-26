@@ -26,14 +26,14 @@ function RemoveBox<T extends TRemoveBox>(props: TRemoveBoxProps<T>) {
     }
   }
 
-  console.log(
-    'Remove Box clicksLeft:',
-    props.box.id,
-    ' - ',
-    props.box.clicksCount,
-    '  - max: ',
-    props.box.clicksMax
-  )
+  // console.log(
+  //   'Remove Box clicksLeft:',
+  //   props.box.id,
+  //   ' - ',
+  //   props.box.clicksCount,
+  //   '  - max: ',
+  //   props.box.clicksMax
+  // )
   return (
     <>
       <button

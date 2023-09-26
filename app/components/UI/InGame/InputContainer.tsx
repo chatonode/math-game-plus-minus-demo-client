@@ -21,8 +21,6 @@ type TInputContainerProps<T> = React.PropsWithChildren & {
 }
 
 function InputContainer<T>(props: TInputContainerProps<T>) {
-  console.log('Input has error:', props.hasError)
-
   return (
     <div className={classes['input-container']}>
       <input

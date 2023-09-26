@@ -8,7 +8,6 @@ import { getBackgroundImage } from '@/app/_helpers/components/box'
 type TAddBox = TBox & {
   onAdd: (type: EBoxScore) => void
   clicksLeft: number
-  // disabled: boolean
 }
 
 type TAddBoxProps<T> = React.PropsWithChildren & {
@@ -25,7 +24,6 @@ function AddBox<T extends TAddBox>(props: TAddBoxProps<T>) {
     }
   }
 
-  // console.log('Active Box:', props.box.id)
   return (
     <>
       <button

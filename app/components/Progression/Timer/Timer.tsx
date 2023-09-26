@@ -37,8 +37,6 @@ const Timer = (props: TTimerProps) => {
 
   // Setup
   useEffect(() => {
-    console.log('AM I BEING RENDERED?')
-
     const intervalId = setInterval(() => {
       if (props.currentLevel < props.maxLevel) {
         setCurrentTimeState((prevTimeState) => {

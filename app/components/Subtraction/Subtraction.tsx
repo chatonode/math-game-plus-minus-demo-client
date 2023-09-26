@@ -253,24 +253,6 @@ const Subtraction = (props: TSubtractionProps) => {
     }
   }
 
-  // useEffect(() => {
-  //   const expected = props.question.params.expected_result
-  //   const actual = state.first_part.current_total
-  //   if (actual === expected) {
-  //     dispatch({
-  //       type: ESubtractionActionType.SUCCESS,
-  //     })
-  //     // props.onFirstPartFinish()
-  //   }
-  // }, [state.first_part.current_total])
-
-  // console.log('Inside Subtraction:')
-  // console.log('initialRemaining', props.question.params.number_to_operate)
-  // console.log(
-  //   'currentRemaining',
-  //   state.first_part.current_total - props.question.params.expected_result
-  // )
-
   return (
     <>
       <main
@@ -296,7 +278,6 @@ const Subtraction = (props: TSubtractionProps) => {
             state.second_part.finished ? ' ' + classes.locked : ''
           }`}
         >
-          {/* TODO: Top-Right Panel */}
           <ActiveBoxList // For: 81
             currentRemaining={
               // 200

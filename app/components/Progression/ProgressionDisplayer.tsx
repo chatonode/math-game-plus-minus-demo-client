@@ -82,7 +82,7 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
 
       const data = await response.json()
 
-      console.log(data)
+      console.log('Response Data:', Object.values(data))
     }
 
     sendTimeScore()
