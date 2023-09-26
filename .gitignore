@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+## custom build
+/games/
+
 # production
 /build
 

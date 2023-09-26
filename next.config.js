@@ -5,7 +5,10 @@ const nextConfig = {
   // trailingSlash: true,
 
   images: { unoptimized: true },
-  // assetPrefix: '/out',   // Activate for SCR build / Deactivate during pushes
+  // assetPrefix: '/out',   // OLD -> Activate for SCR build / Deactivate during pushes
+  // assetPrefix: '/games/warehouse', // NEW -> Activate for SCR build / Deactivate during pushes
+  // // Optional: Change the output directory `out` -> `dist`
+  // distDir: '/games/warehouse',
 }
 
 module.exports = nextConfig

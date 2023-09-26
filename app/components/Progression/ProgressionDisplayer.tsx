@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, Suspense } from 'react'
 
 import Timer, { TTimerScoreBody } from './Timer/Timer'
 import Addition from '../Addition/Addition'
@@ -67,16 +67,13 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
         score,
       }
 
-      const response = await fetch(
-        '/api/progresses',
-        {
-          method: 'POST',
-          body: JSON.stringify(timerScoreBody),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      )
+      const response = await fetch('/api/progresses', {
+        method: 'POST',
+        body: JSON.stringify(timerScoreBody),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
 
       if (!response.ok) {
         throw new Error('Unable to send time score data to the server!')
@@ -105,15 +102,23 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
         />
       )}
 
-      {/* { currentLevel === maxLevel && (
-        <TimerResult>{timerSeconds}</TimerResult>
-      )} */}
-
       {/* Intro */}
 
+      {/* <Suspense
+        fallback={
+          <p>
+            Loading...
+            {Array.from(['selam', 'canım']).map((message, index) => {
+              console.log('Am i being rendered?')
+              return <span key={index}>123-{message}</span>
+            })}
+          </p>
+        }
+      > */}
       {currentLevel === ELevel.LEVEL_000 && (
         <FirstLevel myLevel={ELevel.LEVEL_000} onNext={onNext} />
       )}
+      {/* </Suspense> */}
 
       {currentLevel === ELevel.LEVEL_001 && (
         <MidLevel
@@ -151,6 +156,7 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
 
       {props.questions[0].params.operation === EOperationType.ADDITION &&
         (currentLevel as ELevel) <= ELevel.LEVEL_005 && (
+          // (currentLevel as ELevel) > ELevel.LEVEL_001 &&
           <Addition
             question={props.questions[0]}
             // onFirstPartReset={onPrevious}
