@@ -66,6 +66,7 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
 
       const response = await fetch(
         'https://scr-numbers-digits-game-demo-default-rtdb.europe-west1.firebasedatabase.app/scores.json',
+        // '/api/progresses',
         {
           method: 'POST',
           body: JSON.stringify(timerScoreBody),
