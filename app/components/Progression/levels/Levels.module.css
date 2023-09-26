@@ -17,3 +17,12 @@
   border-color: unset;
   border: 0;
 }
+
+.result-text {
+  z-index: 1;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  font-size: 48px;
+}
+

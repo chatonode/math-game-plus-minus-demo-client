@@ -58,6 +58,8 @@ export type TLevelProps = React.PropsWithChildren & {
 }
 
 export type TFirstLevelProps = Pick<TLevelProps, "myLevel" | "onNext" | "children">
-export type TLastLevelProps = Pick<TLevelProps, "myLevel" | "onPrevious" | "children">
+export type TLastLevelProps = Pick<TLevelProps, "myLevel" | "children"> & {
+    resultTime: number
+}
 
 

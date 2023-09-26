@@ -9,17 +9,18 @@ import classes from './Levels.module.css'
 
 import { TLastLevelProps } from '../Level'
 
-const LastLevel = ({ myLevel, onPrevious }: TLastLevelProps) => {
+const LastLevel = ({ myLevel, resultTime }: TLastLevelProps) => {
   const overlayImageSrc = `assets/images/levels/level-${myLevel
     .toString()
-    .padStart(3, '0')}.png`
+    .padStart(3, '0')}.jpg` // jpg
   const overlayImageAlt = `level-${myLevel}`
 
   return (
     <>
       <Backdrop>
         <OverlayImage imageSrc={overlayImageSrc} imageAlt={overlayImageAlt}>
-          <div className={classes['arrow-container']}>
+          <h3 className={classes['result-text']}>{resultTime.toString()}</h3>
+          {/* <div className={classes['arrow-container']}>
             <button onClick={onPrevious}>
               <Image
                 src="assets/images/levels/arrow-left.png"
@@ -38,7 +39,7 @@ const LastLevel = ({ myLevel, onPrevious }: TLastLevelProps) => {
                 alt="right arrow"
               />
             </button>
-          </div>
+          </div> */}
         </OverlayImage>
       </Backdrop>
     </>

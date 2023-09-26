@@ -4,10 +4,10 @@ import classes from './Timer.module.css'
 import { ELevel } from '../Level'
 
 export type TTimerScoreBody = {
-  readonly contentId: 118
+  readonly contentId: 7
   completionTimeSeconds: number
   readonly completionRate: 100
-  score: number
+  readonly score: 0
 }
 
 type TTimerProps = React.PropsWithChildren & {
@@ -105,8 +105,9 @@ const Timer = (props: TTimerProps) => {
   }, [props.currentLevel])
 
   return <div className={classes.timer} style={{
-    display: timeState.currentTime === TIMEOUT_MAX_SECONDS ? 'none' : 'inherit'
+    // display: timeState.currentTime === TIMEOUT_MAX_SECONDS ? 'none' : 'inherit'
     // animationDuration: timeState.currentTime === TIMEOUT_MAX_SECONDS ? 'inherit' : '0s'
+    display: props.currentLevel === props.maxLevel || props.currentLevel === props.midLevel ? 'none' : 'inherit'
   }}>{timeState.currentTime}</div>
 }
 

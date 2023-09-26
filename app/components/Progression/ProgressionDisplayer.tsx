@@ -20,6 +20,7 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
   const [minLevel] = useState<ELevel>(ELevel.LEVEL_000)
   const [currentLevel, setCurrentLevel] = useState<ELevel>(ELevel.LEVEL_000) // Default: LEVEL_000
   const [maxLevel] = useState<ELevel>(ELevel.LEVEL_012)
+  const [timerSeconds, setTimerSeconds] = useState<number>(0)
 
   const onPrevious = () => {
     setCurrentLevel((prevLevel) => {
@@ -51,11 +52,13 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
 
   // Timer-related Code
   const completeProgressionHandler = (endTimeSeconds: number) => {
+    setTimerSeconds(endTimeSeconds)
+
     const sendTimeScore = async () => {
-      const contentId = 118
+      const contentId = 7
       const completionTimeSeconds = endTimeSeconds
       const completionRate = 100
-      const score = completionTimeSeconds / completionRate
+      const score = 0
 
       const timerScoreBody: TTimerScoreBody = {
         contentId,
@@ -65,8 +68,7 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
       }
 
       const response = await fetch(
-        'https://scr-numbers-digits-game-demo-default-rtdb.europe-west1.firebasedatabase.app/scores.json',
-        // '/api/progresses',
+        '/api/progresses',
         {
           method: 'POST',
           body: JSON.stringify(timerScoreBody),
@@ -102,6 +104,10 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
           onComplete={completeProgressionHandler}
         />
       )}
+
+      {/* { currentLevel === maxLevel && (
+        <TimerResult>{timerSeconds}</TimerResult>
+      )} */}
 
       {/* Intro */}
 
@@ -242,7 +248,7 @@ const ProgressionDisplayer = (props: TProgressionDisplayerProps) => {
       {/* Outro */}
 
       {currentLevel === ELevel.LEVEL_012 && (
-        <LastLevel myLevel={ELevel.LEVEL_012} onPrevious={onPrevious} />
+        <LastLevel myLevel={ELevel.LEVEL_012} resultTime={timerSeconds} />
       )}
     </>
   )
