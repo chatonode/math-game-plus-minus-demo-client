@@ -27,6 +27,8 @@ type TTimeState = {
   isPaused: boolean
 }
 
+const TIMEOUT_MAX_SECONDS = 600 // -> 10 minutes
+
 const Timer = (props: TTimerProps) => {
   const [timeState, setCurrentTimeState] = useState<TTimeState>({
     currentTime: 0,
@@ -35,9 +37,19 @@ const Timer = (props: TTimerProps) => {
 
   // Setup
   useEffect(() => {
+    console.log('AM I BEING RENDERED?')
+
     const intervalId = setInterval(() => {
       if (props.currentLevel < props.maxLevel) {
         setCurrentTimeState((prevTimeState) => {
+          // Timeout
+          if (prevTimeState.currentTime ===  TIMEOUT_MAX_SECONDS) {
+            clearInterval(intervalId)
+            return {
+              currentTime: TIMEOUT_MAX_SECONDS,
+              isPaused: true,
+            }
+          }
           // Increment
           if (!prevTimeState.isPaused) {
             return {
@@ -55,6 +67,7 @@ const Timer = (props: TTimerProps) => {
 
     // Pause
     if (props.currentLevel === props.maxLevel) {
+      clearInterval(intervalId)
       setCurrentTimeState((prevTimeState) => {
         return {
           currentTime: prevTimeState.currentTime,
@@ -93,7 +106,10 @@ const Timer = (props: TTimerProps) => {
     }
   }, [props.currentLevel])
 
-  return <div className={classes.timer}>{timeState.currentTime}</div>
+  return <div className={classes.timer} style={{
+    display: timeState.currentTime === TIMEOUT_MAX_SECONDS ? 'none' : 'inherit'
+    // animationDuration: timeState.currentTime === TIMEOUT_MAX_SECONDS ? 'inherit' : '0s'
+  }}>{timeState.currentTime}</div>
 }
 
 export default memo(Timer)
