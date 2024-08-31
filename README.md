@@ -2,6 +2,8 @@
 
 Welcome to the Math Challenge Demo App, an interactive [Next.js](https://nextjs.org/) application designed to help primary school students improve their arithmetic skills through engaging, timed challenges.
 
+**[Try the live demo here!](https://math-game-plus-minus-demo-client.vercel.app/)**
+
 ## Table of Contents
 
 - [Overview](#overview)
