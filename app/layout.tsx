@@ -1,3 +1,5 @@
+'use client'
+
 import './globals.css'
 import type { Metadata } from 'next'
 import { Grandstander } from 'next/font/google'
