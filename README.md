@@ -23,8 +23,8 @@ This app provides students with a series of arithmetic challenges focusing on th
    - Students interact by clicking on boxes to adjust the numbers as required by the problem.
 
 2. **Answer Submission**:  
-   - After manipulation, students enter the final result into an input box and submit their answer.
-   - Real-time validation provides visual feedback (green/red box-shadows) and controls the submit button's state.
+   - After manipulation, students enter the final result into an input field and submit their answer.
+   - Real-time validation provides visual feedback on the input field.
 
 ## Features
 
