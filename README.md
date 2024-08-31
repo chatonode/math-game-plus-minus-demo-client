@@ -10,13 +10,12 @@ Welcome to the Math Challenge Demo App, an interactive [Next.js](https://nextjs.
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Running the Development Server](#running-the-development-server)
-- [Configuration Note](#configuration-note)
 - [Finishing Touches](#finishing-touches)
 - [Feedback](#feedback)
 
 ## Overview
 
-This app provides students with a series of arithmetic challenges focusing on the addition and subtraction of 5-6 digit numbers. Each challenge is divided into two interactive parts:
+This app provides students with a series of arithmetic challenges focusing on the addition and subtraction of 4-5 digit numbers. Each challenge is divided into two interactive parts:
 
 1. **Interactive Number Manipulation**:  
    - **Storage Panel (Left Side)**: Displays 10 stack columns representing numbers.
@@ -33,6 +32,7 @@ This app provides students with a series of arithmetic challenges focusing on th
 - **Three Minus Games**: Subtraction challenges.
 - **10-Minute Time Trial**: Complete all challenges within 10 minutes.
 - **Score Calculation**: Scores are calculated server-side after all challenges are completed or when time expires.
+- **Language Support**: Challenge demo is currently available in Turkish (TR) only.
 
 ## Getting Started
 
@@ -70,10 +70,6 @@ pnpm dev
 ```
 
 Visit [http://localhost:3000](http://localhost:3000) in your browser to view the application.
-
-## Configuration Note
-
-This demo app is currently designed to work as an embedded IFrame within a larger MVC Java application. If you plan to use it as a standalone single-page application (SPA), some configuration adjustments will be necessary to tweak its behavior accordingly.
 
 ## Finishing Touches
 

@@ -19,4 +19,4 @@ const nextConfig = {
   // distDir: '/games/warehouse',
 }
 
-// module.exports = nextConfig
+module.exports = nextConfig
