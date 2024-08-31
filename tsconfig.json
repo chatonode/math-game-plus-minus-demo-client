@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,7 +23,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
   "include": [
@@ -27,6 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
+    "/games/warehouse/types/**/*.ts"
     // "app/components/Progression/OverlayImage.tsx",
     // "app/components/Addition/Addition-old.tsx.old",
     // "app/components/Progression/ProgressionDisplayer.tsx",
@@ -37,5 +44,7 @@
     // "app/components/Progression/levels/archived/Level004.tsx.old",
     // "app/components/Progression/levels/archived/Level011.tsx.old"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

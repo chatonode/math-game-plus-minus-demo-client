@@ -14,9 +14,9 @@ const nextConfig = {
 
   /** Build Steps: Activate for SCR build / Deactivate during pushes */
   // // Step #1
-  assetPrefix: '/games/warehouse',
+  // assetPrefix: '/games/warehouse',
   // // Step #2 ->  Change the output directory `out` -> `games/warehouse`
-  distDir: '/games/warehouse',
+  // distDir: '/games/warehouse',
 }
 
-module.exports = nextConfig
+// module.exports = nextConfig
